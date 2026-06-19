@@ -48,6 +48,22 @@ python3 -m http.server 8000   # http://localhost:8000
 ```
 ※ 音声・PWA・チェックリスト保存・為替は http(s) 配信時に完全動作します（`file://` 直開きでは一部制限）。
 
+### 更新方法（重要）
+コンテンツや表示を変えたら、**`node build.mjs` を実行してから** commit/push します。
+build.mjs が `data/` ＋ `assets/app.js` のレンダリング関数を使って、
+ホーム `index.html`・**国別ページ `/<id>/index.html`（全50）**・`sitemap.xml`・`sw.js` を再生成します。
+
+```bash
+node build.mjs
+git add -A && git commit -m "更新" && git push
+```
+
+### 構成（SEO対応・静的マルチページ）
+- `assets/style.css`（CSS）／`assets/app.js`（レンダリング＆対話ロジック）
+- `data/<国>.js`（国データ）／`data/landmarks.js`／`data/ex_1〜5.js`（ビザ・予算）
+- `build.mjs`（ジェネレーター）→ `index.html` ＋ `<国>/index.html`（事前レンダリング・国別title/meta/OGP/JSON-LD）
+- 各国は実URL：`https://chiiita.github.io/tabimae/<国>/`（検索エンジンが国別に認識）
+
 ### デプロイ（GitHub Pages）
 mainブランチ／`/(root)` を公開。
 

@@ -1,37 +1,8 @@
-// たびまえ Service Worker — オフライン対応
-// 注意点・フレーズ・緊急番号・ビザ等はネット無しで閲覧可（為替の最新レートのみ通信要）
-const CACHE = 'tabimae-v2';
-const SHELL = [
-  './', './index.html', './manifest.json', './icon-192.png', './icon-512.png',
-  "data/australia.js","data/austria.js","data/belgium.js","data/brazil.js","data/cambodia.js","data/canada.js","data/china.js","data/croatia.js","data/czech.js","data/denmark.js","data/egypt.js","data/fiji.js","data/finland.js","data/france.js","data/germany.js","data/greece.js","data/guam.js","data/hongkong.js","data/hungary.js","data/india.js","data/indonesia.js","data/ireland.js","data/italy.js","data/korea.js","data/landmarks.js","data/laos.js","data/malaysia.js","data/mexico.js","data/mongolia.js","data/morocco.js","data/nepal.js","data/netherlands.js","data/newzealand.js","data/norway.js","data/philippines.js","data/poland.js","data/portugal.js","data/saipan.js","data/singapore.js","data/southafrica.js","data/spain.js","data/srilanka.js","data/sweden.js","data/switzerland.js","data/taiwan.js","data/thailand.js","data/turkey.js","data/uae.js","data/uk.js","data/usa.js","data/vietnam.js"
-];
-
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
-});
-self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
-});
-self.addEventListener('fetch', e => {
-  const req = e.request;
-  if (req.method !== 'GET') return;
-  const url = new URL(req.url);
-  // 為替API・TradingViewは常にネット（キャッシュしない＝最新を取りに行く）
-  if (/coinbase\.com|open\.er-api\.com|tradingview/.test(url.host)) {
-    e.respondWith(fetch(req).catch(() => new Response('', { status: 504 })));
-    return;
-  }
-  // Googleフォント等はstale-while-revalidate、それ以外(自サイト)はcache-first
-  e.respondWith(
-    caches.match(req).then(hit => {
-      const net = fetch(req).then(res => {
-        if (res && res.status === 200 && (url.origin === location.origin || /gstatic|googleapis/.test(url.host))) {
-          const copy = res.clone();
-          caches.open(CACHE).then(c => c.put(req, copy));
-        }
-        return res;
-      }).catch(() => hit);
-      return hit || net;
-    })
-  );
-});
+// たびまえ Service Worker（自動生成 by build.mjs）
+const CACHE='tabimae-v3';
+const SHELL=["./","./index.html","./manifest.json","./icon-192.png","./icon-512.png","assets/style.css","assets/app.js","data/korea.js","data/taiwan.js","data/thailand.js","data/china.js","data/hongkong.js","data/vietnam.js","data/singapore.js","data/philippines.js","data/indonesia.js","data/malaysia.js","data/india.js","data/cambodia.js","data/srilanka.js","data/nepal.js","data/mongolia.js","data/laos.js","data/france.js","data/italy.js","data/spain.js","data/germany.js","data/uk.js","data/switzerland.js","data/netherlands.js","data/belgium.js","data/ireland.js","data/croatia.js","data/greece.js","data/portugal.js","data/austria.js","data/czech.js","data/hungary.js","data/poland.js","data/finland.js","data/sweden.js","data/norway.js","data/denmark.js","data/usa.js","data/canada.js","data/mexico.js","data/brazil.js","data/australia.js","data/guam.js","data/newzealand.js","data/fiji.js","data/saipan.js","data/uae.js","data/turkey.js","data/egypt.js","data/morocco.js","data/southafrica.js","data/landmarks.js","data/ex_1.js","data/ex_2.js","data/ex_3.js","data/ex_4.js","data/ex_5.js","korea/","taiwan/","thailand/","china/","hongkong/","vietnam/","singapore/","philippines/","indonesia/","malaysia/","india/","cambodia/","srilanka/","nepal/","mongolia/","laos/","france/","italy/","spain/","germany/","uk/","switzerland/","netherlands/","belgium/","ireland/","croatia/","greece/","portugal/","austria/","czech/","hungary/","poland/","finland/","sweden/","norway/","denmark/","usa/","canada/","mexico/","brazil/","australia/","guam/","newzealand/","fiji/","saipan/","uae/","turkey/","egypt/","morocco/","southafrica/"];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
+self.addEventListener('fetch',e=>{const req=e.request;if(req.method!=='GET')return;const url=new URL(req.url);
+  if(/coinbase\.com|open\.er-api\.com|tradingview/.test(url.host)){e.respondWith(fetch(req).catch(()=>new Response('',{status:504})));return;}
+  e.respondWith(caches.match(req).then(hit=>{const net=fetch(req).then(res=>{if(res&&res.status===200&&(url.origin===location.origin||/gstatic|googleapis/.test(url.host))){const cp=res.clone();caches.open(CACHE).then(c=>c.put(req,cp));}return res;}).catch(()=>hit);return hit||net;}));});
