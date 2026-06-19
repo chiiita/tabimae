@@ -66,6 +66,7 @@ function head({base, title, desc, canonical, jsonld}){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="8nxnfNfAeiIF4y2o9Pat0MSHB5bYzsV2z5ZaysLEMr8">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${canonical}">
