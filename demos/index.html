@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>たびまえ｜デザインパターン比較</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',system-ui,sans-serif;background:#0f1115;color:#e8eaed;line-height:1.7;padding:0 0 60px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+header{padding:48px 0 28px;text-align:center;
+  background:radial-gradient(120% 120% at 50% 0%, #1c2a3a, #0f1115 70%)}
+header h1{font-size:26px;font-weight:900}
+header p{color:#9aa3af;font-size:14px;margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:30px}
+@media(min-width:680px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:#181b21;border:1px solid #272b33;border-radius:18px;overflow:hidden;
+  transition:transform .15s, border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:#3a414d}
+.swatch{height:88px;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;letter-spacing:1px}
+.body{padding:18px 18px 20px}
+.tag{font-size:11px;font-weight:700;color:#0f1115;background:#9aa3af;padding:2px 10px;border-radius:999px;display:inline-block}
+.card h2{font-size:19px;margin:10px 0 4px}
+.card .ref{font-size:12px;color:#7a828e}
+.card p{font-size:13px;color:#b5bcc6;margin:10px 0 16px;min-height:54px}
+.btns{display:flex;gap:10px}
+.btns a{flex:1;text-align:center;font-size:13.5px;font-weight:700;padding:11px 0;border-radius:11px;text-decoration:none}
+.open{background:#3b82f6;color:#fff}
+.openc{background:#222730;color:#cdd3db;border:1px solid #323843}
+.note{margin-top:34px;background:#15181e;border:1px solid #272b33;border-radius:14px;padding:18px 20px;font-size:13px;color:#aab1bb}
+.note b{color:#e8eaed}
+.cur{margin-top:18px;text-align:center}
+.cur a{color:#7aa7ff;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🧳 たびまえ — デザインパターン比較</h1>
+    <p>同じ中身（タイ・韓国・台湾・米ハワイ）を、4つの参考サイトの作法で作りました。<br>気に入った1つ（または良い所どり）を教えてください。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+
+    <div class="card">
+      <div class="swatch" style="background:linear-gradient(135deg,#FF385C,#BD1E59);color:#fff">Airbnb</div>
+      <div class="body">
+        <span class="tag">パターンA</span>
+        <h2>Airbnb風</h2>
+        <div class="ref">参考: Airbnb</div>
+        <p>旅行系の王道。コーラル(#FF385C)・丸い検索バー・正方形カード・ゆったり余白で「予約サービスの上品さ」。</p>
+        <div class="btns">
+          <a class="open" href="airbnb_style.html" target="_blank" rel="noopener">開く ↗</a>
+          <a class="openc" href="airbnb_style.html">この画面で</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:linear-gradient(135deg,#58CC02,#46a302);color:#fff">Duolingo</div>
+      <div class="body">
+        <span class="tag">パターンB</span>
+        <h2>Duolingo風</h2>
+        <div class="ref">参考: Duolingo</div>
+        <p>学習アプリのポップさ。緑(#58CC02)・丸み・ぷっくり3Dボタン・横スクロールチップ。親しみと楽しさ重視。</p>
+        <div class="btns">
+          <a class="open" href="duolingo.html" target="_blank" rel="noopener">開く ↗</a>
+          <a class="openc" href="duolingo.html">この画面で</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:#fff;color:#37352f;border-bottom:1px solid #e8e8e6">Notion</div>
+      <div class="body">
+        <span class="tag">パターンC</span>
+        <h2>Notion風</h2>
+        <div class="ref">参考: Notion</div>
+        <p>究極のミニマル。モノクロ・罫線・フラット・左寄せ。情報サイトとして最も「静かで読みやすい」。</p>
+        <div class="btns">
+          <a class="open" href="notion.html" target="_blank" rel="noopener">開く ↗</a>
+          <a class="openc" href="notion.html">この画面で</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:linear-gradient(135deg,#08090A,#5E6AD2);color:#fff">Linear</div>
+      <div class="body">
+        <span class="tag">パターンD</span>
+        <h2>Linear風</h2>
+        <div class="ref">参考: Linear</div>
+        <p>ダーク&スリーク。黒地・紫青グラデ・ガラス・グロー。近未来的でプレミアムな質感。</p>
+        <div class="btns">
+          <a class="open" href="linear_style.html" target="_blank" rel="noopener">開く ↗</a>
+          <a class="openc" href="linear_style.html">この画面で</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <b>見るときのポイント</b><br>
+    ① ホームの国カードの印象 ② 国を開いた時の概況サマリー＆フレーズの見やすさ ③ 全体の「好き／ターゲットに合う」感覚。<br>
+    各国を開くには国カードをタップ。スマホ表示も確認するなら、ブラウザの検証ツールでスマホ幅にしてください。
+  </div>
+
+  <div class="cur">
+    <a href="../index.html">← 現行版（ティール×アンバー）も見る</a>
+  </div>
+</div>
+</body>
+</html>

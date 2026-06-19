@@ -1,0 +1,16 @@
+{
+  "name": "たびまえ｜海外旅行の注意点と現地で使えるフレーズ",
+  "short_name": "たびまえ",
+  "description": "渡航前の注意点・ビザ・為替・場面別フレーズ・緊急連絡先を国別にまとめた旅行情報サイト。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "ja",
+  "background_color": "#faf9f6",
+  "theme_color": "#16263f",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>たびまえ — 行く前に、ぜんぶ。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+/* =========================================================
+   Airbnb design language reproduction — design tokens
+   ========================================================= */
+:root{
+  /* Brand */
+  --rausch:#FF385C;
+  --rausch-active:#E00B41;
+  --rausch-grad-a:#E61E4D;
+  --rausch-grad-b:#E31C5F;
+  --rausch-grad-c:#BD1E59;
+
+  /* Surfaces */
+  --canvas:#ffffff;
+  --soft:#f7f7f7;
+  --strong:#f2f2f2;
+
+  /* Text */
+  --ink:#222222;
+  --body:#3f3f3f;
+  --muted:#6a6a6a;
+  --muted-soft:#929292;
+
+  /* Lines */
+  --hairline:#dddddd;
+  --hairline-soft:#ebebeb;
+  --border-strong:#c1c1c1;
+
+  /* Semantic */
+  --error:#c13515;
+  --error-hover:#b32505;
+
+  /* Safety tones */
+  --safe-1:#008a05;  --safe-1-bg:#e9f7ea;
+  --safe-2:#b07d00;  --safe-2-bg:#fbf3df;
+  --safe-3:#c5610e;  --safe-3-bg:#fdeede;
+  --safe-4:#c13515;  --safe-4-bg:#fdeceb;
+
+  /* Radius */
+  --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:32px; --r-full:9999px;
+
+  /* Elevation — Airbnb single shadow tier */
+  --shadow-card: rgba(0,0,0,0.08) 0 6px 16px;
+  --shadow-float: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px, rgba(0,0,0,0.10) 0 4px 8px;
+  --shadow-hover: rgba(0,0,0,0.10) 0 10px 28px;
+
+  --font: "Nunito","Noto Sans JP",-apple-system,system-ui,"Helvetica Neue",sans-serif;
+  --maxw:1120px;
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--font);
+  color:var(--ink);
+  background:var(--canvas);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+
+/* ---------- Top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--hairline-soft);
+}
+.topbar-inner{
+  height:72px;display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:8px;cursor:pointer;border:0;background:none;padding:0;}
+.brand-mark{
+  width:30px;height:30px;color:var(--rausch);flex:0 0 auto;
+}
+.brand-name{
+  font-weight:800;font-size:21px;color:var(--rausch);letter-spacing:-0.5px;
+}
+.brand-sub{font-size:12px;color:var(--muted);font-weight:600;margin-top:1px;}
+.topbar-pill{
+  display:flex;align-items:center;gap:10px;
+  height:46px;padding:0 8px 0 18px;
+  border:1px solid var(--hairline);border-radius:var(--r-full);
+  box-shadow:var(--shadow-float);
+  font-weight:600;font-size:14px;color:var(--ink);
+  cursor:pointer;background:#fff;transition:box-shadow .2s ease;
+}
+.topbar-pill:hover{box-shadow:var(--shadow-hover);}
+.topbar-pill .orb{
+  width:32px;height:32px;border-radius:var(--r-full);
+  background:var(--rausch);color:#fff;display:grid;place-items:center;
+}
+.topbar-pill .orb svg{width:15px;height:15px;}
+
+/* ---------- Hero ---------- */
+.hero{padding:40px 0 8px;}
+.hero h1{
+  font-family:var(--font);
+  font-size:40px;line-height:1.12;font-weight:800;letter-spacing:-1px;
+  margin:0 0 14px;max-width:14ch;
+}
+.hero p{font-size:18px;color:var(--muted);margin:0 0 26px;max-width:46ch;line-height:1.55;}
+
+/* Big search pill (Airbnb signature) */
+.searchbar{
+  display:flex;align-items:center;
+  background:#fff;border:1px solid var(--hairline);
+  border-radius:var(--r-full);
+  box-shadow:var(--shadow-float);
+  height:66px;max-width:540px;
+  padding:0 8px 0 4px;
+  transition:box-shadow .2s ease;
+}
+.searchbar:focus-within{box-shadow:var(--shadow-hover);}
+.searchbar .seg{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:0 22px;height:100%;
+}
+.searchbar .seg label{font-size:12px;font-weight:700;color:var(--ink);}
+.searchbar input{
+  border:0;outline:0;background:none;font-family:inherit;
+  font-size:15px;color:var(--ink);padding:2px 0 0;width:100%;
+}
+.searchbar input::placeholder{color:var(--muted-soft);font-weight:500;}
+.search-btn{
+  flex:0 0 auto;height:50px;border:0;border-radius:var(--r-full);
+  background:linear-gradient(to right,var(--rausch-grad-a),var(--rausch-grad-b) 50%,var(--rausch-grad-c));
+  color:#fff;display:flex;align-items:center;gap:8px;
+  padding:0 22px;font-size:16px;font-weight:700;cursor:pointer;
+  transition:filter .15s ease,transform .05s ease;
+}
+.search-btn:hover{filter:brightness(1.05);}
+.search-btn:active{transform:scale(.98);}
+.search-btn svg{width:18px;height:18px;}
+
+/* ---------- Section heading ---------- */
+.sec-head{margin:40px 0 6px;}
+.sec-head h2{font-size:24px;font-weight:800;letter-spacing:-0.4px;margin:0;}
+.sec-head p{color:var(--muted);font-size:15px;margin:6px 0 0;}
+
+/* ---------- Country grid ---------- */
+.grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px 16px;
+  margin:22px 0 56px;
+}
+@media(min-width:680px){.grid{grid-template-columns:repeat(3,1fr);gap:26px 22px;}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(4,1fr);}}
+
+.card{
+  border:0;background:none;text-align:left;padding:0;cursor:pointer;
+  display:flex;flex-direction:column;gap:12px;
+  transition:transform .18s ease;
+}
+.card:active{transform:scale(.985);}
+.card-media{
+  position:relative;aspect-ratio:1/1;border-radius:var(--r-md);
+  overflow:hidden;box-shadow:var(--shadow-card);
+  display:grid;place-items:center;
+}
+.card:hover .card-media{box-shadow:var(--shadow-hover);}
+.card-flag{font-size:64px;line-height:1;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));}
+.badge{
+  position:absolute;top:12px;left:12px;
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.94);
+  padding:6px 11px;border-radius:var(--r-full);
+  font-size:12px;font-weight:700;color:var(--ink);
+  box-shadow:var(--shadow-float);
+}
+.badge .dot{width:8px;height:8px;border-radius:50%;}
+.heart{
+  position:absolute;top:10px;right:10px;width:30px;height:30px;
+  color:#fff;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4));
+}
+.card-body{padding:0 2px;}
+.card-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;}
+.card-name{font-size:16px;font-weight:700;color:var(--ink);}
+.card-en{font-size:13px;color:var(--muted);font-weight:600;}
+.card-tag{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.45;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* ---------- Country page ---------- */
+.cpage{display:none;}
+.cpage.active{display:block;}
+.home.hidden{display:none;}
+
+.back{
+  display:inline-flex;align-items:center;gap:8px;
+  margin:18px 0 4px;padding:9px 16px 9px 12px;
+  border:1px solid var(--hairline);border-radius:var(--r-full);
+  background:#fff;font-weight:700;font-size:14px;color:var(--ink);
+  cursor:pointer;box-shadow:var(--shadow-float);transition:box-shadow .2s ease;
+}
+.back:hover{box-shadow:var(--shadow-hover);}
+.back svg{width:16px;height:16px;}
+
+.chero{
+  border-radius:var(--r-lg);overflow:hidden;color:#fff;
+  padding:34px 28px 30px;margin:14px 0 0;position:relative;
+  box-shadow:var(--shadow-card);
+}
+.chero-flag{font-size:54px;line-height:1;margin-bottom:10px;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.3));}
+.chero h1{font-size:32px;font-weight:800;letter-spacing:-0.6px;margin:0;}
+.chero .lang{
+  display:inline-block;margin:12px 0 12px;
+  background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);
+  padding:5px 14px;border-radius:var(--r-full);font-size:13px;font-weight:700;
+}
+.chero p{margin:0;font-size:15px;line-height:1.6;opacity:.96;max-width:50ch;}
+
+/* Summary tiles */
+.tiles{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0 6px;
+}
+@media(min-width:680px){.tiles{grid-template-columns:repeat(4,1fr);}}
+.tile{
+  background:#fff;border:1px solid var(--hairline-soft);
+  border-radius:var(--r-md);padding:16px 16px 15px;
+  box-shadow:var(--shadow-card);
+}
+.tile .t-ico{font-size:20px;line-height:1;}
+.tile .t-label{font-size:12px;font-weight:700;color:var(--muted);margin:9px 0 3px;
+  text-transform:uppercase;letter-spacing:.4px;}
+.tile .t-val{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-0.3px;}
+.tile .safety-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 10px;border-radius:var(--r-full);
+  font-size:13px;font-weight:800;
+}
+.tile .safety-chip .dot{width:8px;height:8px;border-radius:50%;}
+
+/* Sticky section nav */
+.snav{
+  position:sticky;top:72px;z-index:30;
+  background:rgba(255,255,255,0.94);backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--hairline-soft);
+  margin:26px 0 0;
+}
+.snav-inner{
+  display:flex;gap:6px;overflow-x:auto;padding:8px 0;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.snav-inner::-webkit-scrollbar{display:none;}
+.snav a{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;
+  padding:10px 16px;border-radius:var(--r-full);
+  font-size:14px;font-weight:700;color:var(--body);
+  border:1px solid transparent;min-height:44px;
+  transition:background .15s ease,color .15s ease;
+}
+.snav a:hover{background:var(--soft);}
+.snav a.on{background:var(--ink);color:#fff;}
+
+/* Sections */
+.sec{padding:34px 0 6px;scroll-margin-top:140px;}
+.sec-title{display:flex;align-items:center;gap:10px;margin:0 0 18px;}
+.sec-title .ico{font-size:24px;}
+.sec-title h2{font-size:22px;font-weight:800;letter-spacing:-0.4px;margin:0;}
+
+/* Basics list */
+.basics{display:grid;grid-template-columns:1fr;gap:0;
+  border:1px solid var(--hairline-soft);border-radius:var(--r-md);overflow:hidden;
+  box-shadow:var(--shadow-card);}
+@media(min-width:680px){.basics{grid-template-columns:1fr 1fr;}}
+.basic{
+  padding:18px 20px;border-bottom:1px solid var(--hairline-soft);
+}
+@media(min-width:680px){.basic:nth-child(odd){border-right:1px solid var(--hairline-soft);}}
+.basic .b-label{font-size:13px;font-weight:800;color:var(--muted);margin-bottom:4px;}
+.basic .b-value{font-size:16px;font-weight:700;color:var(--ink);}
+.basic .b-note{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.55;}
+
+/* Safety cards */
+.safe-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:680px){.safe-grid{grid-template-columns:1fr 1fr;}}
+.safe-card{
+  background:#fff;border:1px solid var(--hairline-soft);
+  border-radius:var(--r-md);padding:20px 20px 8px;box-shadow:var(--shadow-card);
+}
+.safe-card h3{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:800;margin:0 0 12px;}
+.safe-card ul{margin:0;padding:0;list-style:none;}
+.safe-card li{
+  position:relative;padding:0 0 14px 26px;font-size:14.5px;color:var(--body);line-height:1.55;
+}
+.safe-card li::before{
+  content:"";position:absolute;left:2px;top:8px;width:7px;height:7px;
+  border-radius:50%;background:var(--rausch);
+}
+
+/* Phrases */
+.phrase-block{margin-bottom:26px;}
+.phrase-scene{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800;color:var(--ink);margin:0 0 12px;}
+.phrase-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:680px){.phrase-grid{grid-template-columns:1fr 1fr;}}
+.phrase{
+  background:#fff;border:1px solid var(--hairline-soft);
+  border-radius:var(--r-md);padding:16px 18px;box-shadow:var(--shadow-card);
+  cursor:pointer;text-align:left;width:100%;position:relative;
+  transition:transform .12s ease,box-shadow .2s ease;
+  min-height:44px;
+}
+.phrase:hover{box-shadow:var(--shadow-hover);}
+.phrase:active{transform:scale(.99);}
+.phrase .ja{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:6px;}
+.phrase .local{font-size:21px;font-weight:800;color:var(--ink);line-height:1.3;letter-spacing:-0.3px;}
+.phrase .roman{font-size:13.5px;color:var(--muted);margin-top:6px;}
+.phrase .copy-ico{
+  position:absolute;top:14px;right:14px;width:18px;height:18px;color:var(--muted-soft);
+}
+
+/* Emergency (danger tone) */
+.emg-wrap{
+  border:1px solid #f2c5bd;background:var(--safe-4-bg);
+  border-radius:var(--r-md);padding:8px 4px;
+}
+.emg{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:16px 18px;border-bottom:1px solid #f4d3cc;
+}
+.emg:last-child{border-bottom:0;}
+.emg .e-label{font-size:14px;font-weight:800;color:var(--ink);}
+.emg .e-note{font-size:13px;color:var(--error);margin-top:3px;line-height:1.45;}
+.emg-call{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;
+  background:var(--error);color:#fff;border-radius:var(--r-full);
+  padding:10px 18px;font-size:15px;font-weight:800;min-height:44px;
+  box-shadow:0 2px 8px rgba(193,53,21,.3);transition:background .15s ease;
+}
+.emg-call:hover{background:var(--error-hover);}
+.emg-call svg{width:16px;height:16px;}
+.emg-text{display:inline-flex;align-items:center;
+  font-size:14px;font-weight:700;color:var(--error);text-align:right;max-width:55%;}
+
+/* Apps */
+.app-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:680px){.app-grid{grid-template-columns:1fr 1fr;}}
+.app{
+  display:flex;gap:14px;align-items:flex-start;
+  background:#fff;border:1px solid var(--hairline-soft);
+  border-radius:var(--r-md);padding:18px;box-shadow:var(--shadow-card);
+}
+.app-ico{
+  flex:0 0 auto;width:46px;height:46px;border-radius:12px;
+  background:linear-gradient(135deg,var(--rausch),var(--rausch-grad-c));
+  color:#fff;display:grid;place-items:center;font-size:20px;font-weight:800;
+}
+.app .a-name{font-size:16px;font-weight:800;}
+.app .a-cat{display:inline-block;font-size:11px;font-weight:700;color:var(--rausch);
+  background:var(--safe-4-bg);padding:2px 9px;border-radius:var(--r-full);margin:4px 0 7px;}
+.app .a-desc{font-size:14px;color:var(--muted);line-height:1.55;}
+
+/* note CTA */
+.note-cta{
+  margin:42px 0 20px;border:1px solid var(--hairline);
+  border-radius:var(--r-lg);padding:30px 26px;text-align:center;
+  background:linear-gradient(180deg,#fff,var(--soft));
+  box-shadow:var(--shadow-card);
+}
+.note-cta h3{font-size:20px;font-weight:800;margin:0 0 8px;letter-spacing:-0.4px;}
+.note-cta p{font-size:14.5px;color:var(--muted);margin:0 0 20px;line-height:1.6;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  background:linear-gradient(to right,var(--rausch-grad-a),var(--rausch-grad-b) 50%,var(--rausch-grad-c));
+  color:#fff;border:0;border-radius:var(--r-sm);
+  padding:14px 26px;font-size:16px;font-weight:800;cursor:pointer;min-height:48px;
+  transition:filter .15s ease,transform .05s ease;
+}
+.btn-primary:hover{filter:brightness(1.05);}
+.btn-primary:active{transform:scale(.98);}
+.btn-primary svg{width:17px;height:17px;}
+.btn-disabled{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--strong);color:var(--muted-soft);border:0;border-radius:var(--r-sm);
+  padding:14px 26px;font-size:16px;font-weight:800;cursor:not-allowed;min-height:48px;
+}
+
+/* Footer */
+.foot{border-top:1px solid var(--hairline-soft);margin-top:40px;padding:28px 0 60px;}
+.foot p{font-size:13px;color:var(--muted);margin:0;}
+.foot .foot-brand{font-weight:800;color:var(--ink);}
+
+/* Toast */
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;font-weight:700;font-size:14px;
+  padding:13px 22px;border-radius:var(--r-full);
+  box-shadow:0 8px 28px rgba(0,0,0,.28);
+  opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;
+  z-index:200;display:flex;align-items:center;gap:9px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast svg{width:17px;height:17px;color:#7ddc8a;}
+
+@media(max-width:520px){
+  .hero h1{font-size:30px;}
+  .hero p{font-size:16px;}
+  .searchbar{height:60px;}
+  .search-btn{padding:0 16px;height:46px;}
+  .search-btn span{display:none;}
+  .chero h1{font-size:26px;}
+  .brand-sub{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <button class="brand" id="brandBtn" aria-label="ホームへ">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <path d="M16 1c-3 0-5.3 2.3-6.9 5.5C7.4 10 5.8 13.6 4.2 17.3 3.4 19.2 3 20.7 3 22.1 3 26 5.9 29 9.8 29c2.3 0 4.4-1.2 6.2-3.6 1.8 2.4 3.9 3.6 6.2 3.6 3.9 0 6.8-3 6.8-6.9 0-1.4-.4-2.9-1.2-4.8-1.6-3.7-3.2-7.3-4.9-10.8C21.3 3.3 19 1 16 1zm0 3.2c1.3 0 2.5 1.2 3.7 3.6-2.5 1.3-4.9 1.3-7.4 0C13.5 5.4 14.7 4.2 16 4.2zM9.8 25.8c-2.1 0-3.6-1.6-3.6-3.7 0-.9.3-2 .9-3.5C8.6 15.2 10 12 11.5 8.7c2.9 1.6 6.1 1.6 9 0 .4.9.8 1.8 1.2 2.7-3.5 1-6 4-6 7.7 0 1.6.5 3.1 1.4 4.4-1.2 1.5-2.4 2.3-3.5 2.3-1.4 0-2.6-.9-2.6-2.4 0-1 .5-1.9 1.5-2.5.8-.5 1.8-.8 2.8-.9l-.2-2.9c-1.6.1-3.1.6-4.4 1.4-1.8 1.2-2.9 3-2.9 5z"/>
+      </svg>
+      <span>
+        <span class="brand-name">たびまえ</span>
+        <span class="brand-sub">行く前に、ぜんぶ。</span>
+      </span>
+    </button>
+    <button class="topbar-pill" id="topSearch">
+      渡航先をさがす
+      <span class="orb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<main class="home" id="home">
+  <div class="wrap">
+    <section class="hero">
+      <h1>行く前に知っておけば、旅はもっと安心。</h1>
+      <p>通貨・治安・現地のひとこと・緊急連絡先まで。渡航前に必要な情報を、国ごとにぎゅっとまとめました。</p>
+      <div class="searchbar" role="search">
+        <div class="seg">
+          <label for="q">渡航先</label>
+          <input id="q" type="text" placeholder="国名で検索（例：タイ）" autocomplete="off" />
+        </div>
+        <button class="search-btn" id="goSearch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <span>さがす</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="sec-head">
+      <h2>人気の渡航先</h2>
+      <p>カードをタップすると、その国の渡航前ガイドが開きます。</p>
+    </div>
+    <div class="grid" id="countryGrid"></div>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p><span class="foot-brand">たびまえ</span> — 行く前に、ぜんぶ。 ／ 情報は渡航前の目安です。最新の公式情報も必ずご確認ください。</p>
+    </div>
+  </footer>
+</main>
+
+<!-- ============ COUNTRY PAGE ============ -->
+<div class="cpage" id="cpage">
+  <div class="wrap" id="cpageInner"></div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+  <span id="toastText">コピーしました</span>
+</div>
+
+<script src="../data/thailand.js"></script>
+<script src="../data/korea.js"></script>
+<script src="../data/taiwan.js"></script>
+<script src="../data/usa.js"></script>
+<script>
+(function(){
+  "use strict";
+  var ORDER = ["thailand","korea","taiwan","usa"];
+  var DATA = window.TABIMAE || {};
+
+  /* ---------- utils ---------- */
+  function esc(s){
+    if(s===null||s===undefined) return "";
+    return String(s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+  var SAFETY = {
+    1:{label:"比較的安全", color:"var(--safe-1)", bg:"var(--safe-1-bg)"},
+    2:{label:"注意",       color:"var(--safe-2)", bg:"var(--safe-2-bg)"},
+    3:{label:"要注意",     color:"var(--safe-3)", bg:"var(--safe-3-bg)"},
+    4:{label:"危険",       color:"var(--safe-4)", bg:"var(--safe-4-bg)"}
+  };
+  function safetyInfo(n){ return SAFETY[n] || SAFETY[2]; }
+
+  var ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>';
+  var ICON_COPY  = '<svg class="copy-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+  var ICON_HEART = '<svg class="heart" viewBox="0 0 24 24" fill="rgba(0,0,0,0.18)" stroke="white" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
+  var ICON_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+  var ICON_EXT   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>';
+
+  /* ---------- HOME grid ---------- */
+  function renderHome(){
+    var grid = document.getElementById("countryGrid");
+    var html = "";
+    ORDER.forEach(function(id){
+      var c = DATA[id];
+      if(!c) return;
+      var s = safetyInfo(c.summary && c.summary.safety);
+      var g0 = (c.gradient&&c.gradient[0])||"#FF385C";
+      var g1 = (c.gradient&&c.gradient[1])||"#BD1E59";
+      html +=
+        '<button class="card" data-id="'+esc(id)+'">'+
+          '<div class="card-media" style="background:linear-gradient(135deg,'+esc(g0)+','+esc(g1)+')">'+
+            ICON_HEART+
+            '<span class="badge"><span class="dot" style="background:'+s.color+'"></span>'+esc(s.label)+'</span>'+
+            '<span class="card-flag">'+esc(c.flag)+'</span>'+
+          '</div>'+
+          '<div class="card-body">'+
+            '<div class="card-row"><span class="card-name">'+esc(c.name)+'</span>'+
+              '<span class="card-en">'+esc(c.nameEn)+'</span></div>'+
+            '<div class="card-tag">'+esc(c.tagline)+'</div>'+
+          '</div>'+
+        '</button>';
+    });
+    grid.innerHTML = html;
+    Array.prototype.forEach.call(grid.querySelectorAll(".card"), function(btn){
+      btn.addEventListener("click", function(){ location.hash = "#" + btn.getAttribute("data-id"); });
+    });
+  }
+
+  /* ---------- COUNTRY page ---------- */
+  function renderCountry(id){
+    var c = DATA[id];
+    var inner = document.getElementById("cpageInner");
+    if(!c){ inner.innerHTML = '<p style="padding:60px 0">国が見つかりませんでした。</p>'; return; }
+
+    var s = safetyInfo(c.summary && c.summary.safety);
+    var g0 = (c.gradient&&c.gradient[0])||"#FF385C";
+    var g1 = (c.gradient&&c.gradient[1])||"#BD1E59";
+
+    var html = "";
+
+    /* back */
+    html += '<button class="back" id="backBtn">'+ICON_ARROW+'すべての渡航先</button>';
+
+    /* hero */
+    html +=
+      '<section class="chero" style="background:linear-gradient(135deg,'+esc(g0)+','+esc(g1)+')">'+
+        '<div class="chero-flag">'+esc(c.flag)+'</div>'+
+        '<h1>'+esc(c.name)+'</h1>'+
+        '<div class="lang">使用言語：'+esc(c.lang)+'</div>'+
+        '<p>'+esc(c.tagline)+'</p>'+
+      '</section>';
+
+    /* summary tiles */
+    var sm = c.summary || {};
+    html +=
+      '<div class="tiles">'+
+        tile("💱","通貨", esc(sm.currency)) +
+        tile("🕐","時差", esc(sm.timezone)) +
+        '<div class="tile"><div class="t-ico">🛡️</div><div class="t-label">治安</div>'+
+          '<div class="t-val"><span class="safety-chip" style="background:'+s.bg+';color:'+s.color+'">'+
+          '<span class="dot" style="background:'+s.color+'"></span>'+esc(s.label)+'</span></div></div>' +
+        tile("🌤️","ベストシーズン", esc(sm.season)) +
+      '</div>';
+
+    /* section nav */
+    html +=
+      '<nav class="snav"><div class="snav-inner" id="snav">'+
+        navlink("basics","🧭","基本情報")+
+        navlink("safety","⚠️","注意点")+
+        navlink("phrases","💬","会話")+
+        navlink("emergency","🆘","緊急時")+
+        navlink("apps","📱","アプリ")+
+      '</div></nav>';
+
+    /* basics */
+    html += '<section class="sec" id="basics">'+secTitle("🧭","基本情報");
+    html += '<div class="basics">';
+    (c.basics||[]).forEach(function(b){
+      html += '<div class="basic"><div class="b-label">'+esc(b.label)+'</div>'+
+              '<div class="b-value">'+esc(b.value)+'</div>'+
+              (b.note?'<div class="b-note">'+esc(b.note)+'</div>':'')+'</div>';
+    });
+    html += '</div></section>';
+
+    /* safety */
+    html += '<section class="sec" id="safety">'+secTitle("⚠️","注意点");
+    html += '<div class="safe-grid">';
+    (c.safety||[]).forEach(function(g){
+      html += '<div class="safe-card"><h3>'+esc(g.icon)+' '+esc(g.category)+'</h3><ul>';
+      (g.items||[]).forEach(function(it){ html += '<li>'+esc(it)+'</li>'; });
+      html += '</ul></div>';
+    });
+    html += '</div></section>';
+
+    /* phrases */
+    html += '<section class="sec" id="phrases">'+secTitle("💬","現地のひとこと（タップでコピー）");
+    (c.phrases||[]).forEach(function(p){
+      html += '<div class="phrase-block"><div class="phrase-scene">'+esc(p.icon)+' '+esc(p.scene)+'</div>';
+      html += '<div class="phrase-grid">';
+      (p.items||[]).forEach(function(it){
+        html += '<button class="phrase" data-copy="'+esc(it.local)+'">'+ICON_COPY+
+                '<div class="ja">'+esc(it.ja)+'</div>'+
+                '<div class="local">'+esc(it.local)+'</div>'+
+                '<div class="roman">'+esc(it.roman)+'</div></button>';
+      });
+      html += '</div></div>';
+    });
+    html += '</section>';
+
+    /* emergency */
+    html += '<section class="sec" id="emergency">'+secTitle("🆘","緊急時の連絡先");
+    html += '<div class="emg-wrap">';
+    (c.emergency||[]).forEach(function(e){
+      var val = String(e.value||"");
+      var isTel = /^[+0-9][0-9\s\-]{2,}$/.test(val.replace(/\s/g,"")) && /\d/.test(val);
+      var telHref = "tel:" + val.replace(/[^\d+]/g,"");
+      var right = isTel
+        ? '<a class="emg-call" href="'+esc(telHref)+'">'+ICON_PHONE+esc(val)+'</a>'
+        : '<span class="emg-text">'+esc(val)+'</span>';
+      html += '<div class="emg"><div><div class="e-label">'+esc(e.label)+'</div>'+
+              (e.note?'<div class="e-note">'+esc(e.note)+'</div>':'')+'</div>'+right+'</div>';
+    });
+    html += '</div></section>';
+
+    /* apps */
+    html += '<section class="sec" id="apps">'+secTitle("📱","入れておくと安心なアプリ");
+    html += '<div class="app-grid">';
+    (c.apps||[]).forEach(function(a){
+      html += '<div class="app"><div class="app-ico">'+esc((a.name||"?").charAt(0))+'</div>'+
+              '<div><div class="a-name">'+esc(a.name)+'</div>'+
+              '<span class="a-cat">'+esc(a.category)+'</span>'+
+              '<div class="a-desc">'+esc(a.desc)+'</div></div></div>';
+    });
+    html += '</div></section>';
+
+    /* note CTA */
+    var hasNote = c.noteUrl && String(c.noteUrl).trim() !== "";
+    html += '<section class="note-cta"><h3>'+esc(c.name)+'の完全版ガイド</h3>'+
+            '<p>このページの要点に加え、現地での立ち回りやモデルプランをまとめた完全版を用意しています。</p>';
+    if(hasNote){
+      html += '<a class="btn-primary" href="'+esc(c.noteUrl)+'" target="_blank" rel="noopener">完全版を読む'+ICON_EXT+'</a>';
+    }else{
+      html += '<button class="btn-disabled" disabled>準備中です</button>';
+    }
+    html += '</section>';
+
+    html += '<footer class="foot"><p><span class="foot-brand">たびまえ</span> — 情報は渡航前の目安です。最新の公式情報も必ずご確認ください。</p></footer>';
+
+    inner.innerHTML = html;
+
+    /* wire back */
+    inner.querySelector("#backBtn").addEventListener("click", function(){ location.hash = ""; });
+
+    /* wire phrase copy */
+    Array.prototype.forEach.call(inner.querySelectorAll(".phrase"), function(btn){
+      btn.addEventListener("click", function(){ copyText(btn.getAttribute("data-copy")); });
+    });
+
+    /* scrollspy + smooth nav */
+    setupScrollSpy(inner);
+  }
+
+  function tile(ico,label,val){
+    return '<div class="tile"><div class="t-ico">'+ico+'</div>'+
+           '<div class="t-label">'+esc(label)+'</div>'+
+           '<div class="t-val">'+(val||"—")+'</div></div>';
+  }
+  function navlink(target,ico,label){
+    return '<a href="#'+target+'" data-target="'+target+'">'+ico+' '+esc(label)+'</a>';
+  }
+  function secTitle(ico,t){
+    return '<div class="sec-title"><span class="ico">'+ico+'</span><h2>'+esc(t)+'</h2></div>';
+  }
+
+  function setupScrollSpy(inner){
+    var links = inner.querySelectorAll(".snav a");
+    var ids = ["basics","safety","phrases","emergency","apps"];
+    Array.prototype.forEach.call(links, function(a){
+      a.addEventListener("click", function(ev){
+        ev.preventDefault();
+        var el = document.getElementById(a.getAttribute("data-target"));
+        if(el){
+          var y = el.getBoundingClientRect().top + window.pageYOffset - 128;
+          window.scrollTo({top:y, behavior:"smooth"});
+        }
+      });
+    });
+    function onScroll(){
+      var cur = ids[0], best = -Infinity;
+      ids.forEach(function(id){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var top = el.getBoundingClientRect().top - 140;
+        if(top <= 0 && top > best){ best = top; cur = id; }
+      });
+      Array.prototype.forEach.call(links, function(a){
+        a.classList.toggle("on", a.getAttribute("data-target") === cur);
+      });
+    }
+    window.addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+  }
+
+  /* ---------- copy + toast ---------- */
+  var toastTimer = null;
+  function showToast(msg){
+    var t = document.getElementById("toast");
+    document.getElementById("toastText").textContent = msg;
+    t.classList.add("show");
+    if(toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 1800);
+  }
+  function copyText(text){
+    if(!text){ return; }
+    function done(){ showToast("「"+text+"」をコピーしました"); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text, done); });
+    }else{
+      fallbackCopy(text, done);
+    }
+  }
+  function fallbackCopy(text, done){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand("copy"); document.body.removeChild(ta); done();
+    }catch(e){ showToast("コピーできませんでした"); }
+  }
+
+  /* ---------- routing ---------- */
+  function route(){
+    var id = (location.hash || "").replace(/^#/,"").trim();
+    var home = document.getElementById("home");
+    var cpage = document.getElementById("cpage");
+    if(id && DATA[id]){
+      home.classList.add("hidden");
+      cpage.classList.add("active");
+      renderCountry(id);
+      window.scrollTo(0,0);
+    }else{
+      cpage.classList.remove("active");
+      home.classList.remove("hidden");
+      if(id){ // unknown hash -> clean
+        history.replaceState(null,"",location.pathname+location.search);
+      }
+    }
+  }
+
+  /* ---------- search ---------- */
+  function doSearch(){
+    var q = (document.getElementById("q").value || "").trim().toLowerCase();
+    if(!q){ return; }
+    var hit = ORDER.filter(function(id){
+      var c = DATA[id]; if(!c) return false;
+      return (c.name||"").toLowerCase().indexOf(q) >= 0 ||
+             (c.nameEn||"").toLowerCase().indexOf(q) >= 0 ||
+             id.indexOf(q) >= 0;
+    })[0];
+    if(hit){ location.hash = "#"+hit; }
+    else{ showToast("「"+q+"」は見つかりませんでした"); }
+  }
+
+  /* ---------- init ---------- */
+  function init(){
+    renderHome();
+    document.getElementById("brandBtn").addEventListener("click", function(){ location.hash=""; window.scrollTo(0,0); });
+    document.getElementById("topSearch").addEventListener("click", function(){
+      location.hash=""; var q=document.getElementById("q"); if(q){ q.focus(); window.scrollTo({top:0,behavior:"smooth"}); }
+    });
+    document.getElementById("goSearch").addEventListener("click", doSearch);
+    document.getElementById("q").addEventListener("keydown", function(e){ if(e.key==="Enter"){ doSearch(); } });
+    window.addEventListener("hashchange", route);
+    route();
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", init);
+  }else{ init(); }
+})();
+</script>
+</body>
+</html>
+<!-- TOKENS (確認したAirbnbデザイントークン / 出典: VoltAgent awesome-design-md, shadcn.io/design/airbnb, mobbin Airbnb palette):
+  - ブランドカラー: Rausch #FF385C（主CTA・検索オーブ・ハート・ブランドリンク）/ Active #E00B41 / CTAグラデ #E61E4D→#E31C5F→#BD1E59
+  - サーフェス: Canvas #ffffff / Soft #f7f7f7 / Strong #f2f2f2
+  - テキスト: Ink #222222 / Body #3f3f3f / Muted #6a6a6a / Muted-soft #929292
+  - ライン: Hairline #dddddd / Hairline-soft #ebebeb / Border-strong #c1c1c1
+  - セマンティック: Error #c13515 / Error-hover #b32505（緊急時のdangerトーンに使用）
+  - フォント: Airbnb Cereal VF（独自・有料）→ Web無料代替に Nunito（丸み・モダンな低〜中ウェイト感が近い）+ 日本語 Noto Sans JP。ジャンプ率はヒーロー40px/800・見出し22-24px/800・本文16px/400で再現
+  - border-radius スケール: xs4 / sm8（ボタン）/ md14（カード）/ lg20（大カード・noteCTA）/ full9999（検索ピル・バッジ・タブ・電話ボタン）
+  - ボタン: Rausch塗り or 斜めグラデ、角丸8px、padding 14×24px前後、高さ48px、白文字700。hoverはbrightness微増
+  - 検索バー: 白塗り・full角丸・高さ66px・1px hairlineボーダー・単一の繊細なシャドウtier。右端に円形オーブ/グラデ「さがす」ボタン
+  - 影（単一tier・繊細）: float = rgba(0,0,0,.02) 0 0 0 1px, rgba(0,0,0,.04) 0 2px 6px, rgba(0,0,0,.1) 0 4px 8px / card = rgba(0,0,0,.08) 0 6px 16px / hover = rgba(0,0,0,.1) 0 10px 28px
+  - 余白: 8/12/16/24/32/48/64pxスケール。セクション間64px・たっぷりの白。max-width 1120pxで中央寄せ
+  - カードグリッド: メディアは正方形aspect-ratio・md14角丸・左上に治安バッジ（白半透明pill+ドット）・右上にハート・hoverで浮く
+  - 検索バー前面の構成: ヒーロー直下に大型検索ピルを前面配置（Airbnb象徴）。トップバーにも縮小ピル
+-->

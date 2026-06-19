@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>たびまえ｜海外旅行の注意点と現地で使えるフレーズ</title>
+<meta name="description" content="渡航前に知っておきたい治安・詐欺・マナー・法律と、現地ですぐ使える場面別フレーズ集。タイ・韓国・台湾・アメリカ/ハワイに対応。">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16263f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="たびまえ">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ディープネイビー × ゴールド（高級・旅） */
+  --bg:#faf9f6; --surface:#ffffff;
+  --ink:#16223a; --ink2:#5b6677; --ink3:#97a0ad;
+  --line:rgba(22,34,58,.10); --line2:rgba(22,34,58,.055);
+  --brand:#1e3a5f; --brand-d:#16263f; --brand-soft:#eef2f7;
+  --premium:linear-gradient(140deg,#2a4d76 0%,#1c3858 55%,#16263f 100%);
+  --accent:#c2952f; --accent-d:#a67d24; --accent-soft:#f6eed8;
+  --gold-line:rgba(194,149,47,.45);
+  --danger:#b23b3b; --danger-soft:#f8ecec;
+  --lv1:#2e7d57; --lv1b:#e9f3ed; --lv2:#b5872a; --lv2b:#f6eed8;
+  --lv3:#bf6f2a; --lv3b:#f7ecdf; --lv4:#b23b3b; --lv4b:#f8ecec;
+  /* shadows：繊細・低彩度（ネイビー寄り） */
+  --sh-sm:0 1px 2px hsl(218 30% 22% / .06), 0 1px 3px hsl(218 30% 22% / .05);
+  --sh-md:0 3px 10px hsl(218 32% 20% / .08), 0 1px 3px hsl(218 32% 20% / .05);
+  --sh-glow:0 18px 46px rgba(22,34,58,.26);
+  --r-card:16px; --r-chip:999px; --r-btn:12px; --r-tile:14px;
+  --disp:'Zen Kaku Gothic New','Hiragino Sans',sans-serif;
+}
+/* SVGアイコン共通 */
+.ichip svg,.jchip svg,.si svg,.eic svg,.aic svg,.bhead svg,.pscene svg,.scat .st svg{display:block}
+svg.ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:16px;line-height:1.8;letter-spacing:.01em;
+  -webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--disp);line-height:1.4;letter-spacing:0}
+.wrap{max-width:780px;margin:0 auto;padding:0 18px}
+
+/* ---------- header (Notion風の静かなバー) ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(251,250,248,.85);
+  backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--line2)}
+.hbar{display:flex;align-items:center;height:56px}
+.logo{font-family:var(--disp);font-weight:900;font-size:19px;color:var(--ink);cursor:pointer;
+  display:flex;align-items:center;gap:7px}
+.logo .em{font-size:19px}
+.logo small{font-family:'Noto Sans JP',sans-serif;font-weight:500;color:var(--ink3);font-size:11px;letter-spacing:.02em}
+.back{margin-left:auto;font-size:13px;color:var(--brand-d);font-weight:700;cursor:pointer;display:none;
+  align-items:center;gap:5px;background:var(--brand-soft);padding:7px 14px;border-radius:var(--r-chip);min-height:36px}
+
+/* icon chip (SVGアイコンを丸背景に=統一感) */
+.ichip{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:11px;
+  background:var(--brand-soft);color:var(--brand);flex:0 0 auto}
+.ichip svg{width:20px;height:20px}
+.jchip svg{width:16px;height:16px}
+.si svg{width:19px;height:19px}
+.eic svg{width:18px;height:18px}
+.aic svg{width:20px;height:20px}
+.logo svg{width:22px;height:22px}
+.eyebrow svg{width:13px;height:13px}
+.regico{display:inline-flex;color:var(--brand)}
+.regico svg{width:15px;height:15px}
+.stile .si{color:var(--brand);display:flex;justify-content:center}
+.erow .eic{color:var(--danger)}
+.arow .aic{color:var(--brand)}
+.jchip svg{opacity:.9}
+
+/* ---------- HOME ---------- */
+.hero{position:relative;overflow:hidden;border-radius:22px;margin-top:22px;padding:30px 26px 28px;
+  background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh-md)}
+.hero::before{content:"";position:absolute;right:-60px;top:-70px;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(31,138,134,.16),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;left:-50px;bottom:-90px;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(47,107,214,.12),transparent 70%);pointer-events:none}
+.hero .eyebrow{position:relative;display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
+  letter-spacing:.06em;color:var(--brand-d);background:var(--brand-soft);padding:5px 13px;border-radius:var(--r-chip)}
+.hero h1{position:relative;font-size:25px;font-weight:900;line-height:1.45;margin-top:14px}
+.hero h1 .g{background:var(--premium);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{position:relative;margin-top:11px;font-size:13.5px;color:var(--ink2);line-height:1.75;font-weight:400}
+.hero p b{color:var(--ink);font-weight:700}
+.herotrust{position:relative;margin-top:12px;font-size:11px;color:var(--ink3);line-height:1.5;
+  border-top:1px dashed var(--line);padding-top:10px}
+
+.homesearch{position:relative;margin-top:20px}
+.homesearch .hsicon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px;opacity:.6}
+.homesearch input{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-chip);
+  padding:13px 16px 13px 40px;font-size:15px;font-family:'Noto Sans JP',sans-serif;color:var(--ink);
+  box-shadow:var(--sh-sm);min-height:48px;outline:none}
+.homesearch input:focus{border-color:var(--brand)}
+.sectitle{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:var(--ink2);margin:26px 2px 14px}
+.sectitle .regcount{font-size:11px;font-weight:700;color:var(--ink3);background:var(--bg);border:1px solid var(--line);
+  border-radius:var(--r-chip);padding:1px 9px}
+.sectitle::after{content:"";flex:1;height:1px;background:var(--line)}
+.nohit{text-align:center;color:var(--ink3);font-size:13.5px;padding:30px 0}
+
+.grid{display:grid;grid-template-columns:1fr;gap:12px;padding-bottom:8px}
+@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
+.ccard{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-card);padding:14px;cursor:pointer;box-shadow:var(--sh-sm);
+  transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease}
+.ccard:hover{transform:translateY(-2px);box-shadow:var(--sh-md);border-color:rgba(15,140,132,.35)}
+.ccard:active{transform:scale(.99)}
+.cflag{flex:0 0 auto;width:58px;height:58px;border-radius:15px;display:grid;place-items:center;
+  font-size:30px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--sh-sm)}
+.cflag::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(100% 80% at 80% 0%,rgba(255,255,255,.3),transparent 60%)}
+.cflag span{position:relative;filter:drop-shadow(0 2px 3px rgba(0,0,0,.2))}
+.cinfo{flex:1;min-width:0}
+.ctop{display:flex;align-items:center;gap:8px}
+.cname{font-family:var(--disp);font-size:17px;font-weight:700}
+.cen{font-size:11px;color:var(--ink3);font-weight:500;letter-spacing:.04em;margin-top:-2px}
+.ctag{font-size:12px;color:var(--ink2);margin-top:5px;line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lvbadge{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:var(--r-chip);white-space:nowrap}
+.lv1{color:var(--lv1);background:var(--lv1b)} .lv2{color:var(--lv2);background:var(--lv2b)}
+.lv3{color:var(--lv3);background:var(--lv3b)} .lv4{color:var(--lv4);background:var(--lv4b)}
+
+/* ---------- COUNTRY ---------- */
+#country{display:none}
+.chead{position:relative;overflow:hidden;color:#fff;border-radius:20px;margin-top:18px;padding:24px 22px 30px;
+  min-height:168px;box-shadow:var(--sh-glow)}
+.chead::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(90% 80% at 88% 0%,rgba(255,255,255,.22),transparent 55%);pointer-events:none}
+.heroart{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.chead .flag,.chead h2,.chead .tg,.chead .lang{position:relative;z-index:1}
+.chead .flag{font-size:44px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.22))}
+.secart{margin:2px 0 14px;height:92px;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:linear-gradient(135deg,#eef2f7 0%,#f6eed8 100%);display:flex;align-items:center;justify-content:center}
+.secart svg{width:100%;height:100%}
+.chead h2{position:relative;font-size:24px;margin-top:4px;color:#fff;font-weight:900}
+.chead .lang{font-size:12px;font-weight:500;opacity:.92;font-family:'Noto Sans JP',sans-serif}
+.chead .tg{position:relative;font-size:12.5px;margin-top:8px;opacity:.96;line-height:1.65;font-weight:400;
+  font-family:'Noto Sans JP',sans-serif}
+
+/* summary 4 tiles (Notionのプロパティ感) */
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:14px 0 4px}
+.stile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-tile);padding:12px 8px;
+  text-align:center;box-shadow:var(--sh-sm)}
+.stile .si{font-size:18px}
+.stile .sl{font-size:10px;color:var(--ink3);font-weight:700;margin-top:4px;letter-spacing:.02em}
+.stile .sv{font-size:12.5px;font-weight:700;margin-top:2px;line-height:1.3}
+
+/* sticky jump chips (Duolingo風) */
+.jumpnote{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink3);margin:16px 2px 0;line-height:1.5}
+.jumpnote svg{width:14px;height:14px;flex:0 0 auto;color:var(--brand)}
+.jumpbar{position:sticky;top:56px;z-index:50;margin:7px -18px 0;padding:9px 18px;
+  background:rgba(251,250,248,.92);backdrop-filter:blur(10px);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.jumpbar::-webkit-scrollbar{display:none}
+.jchip{flex:0 0 auto;padding:8px 15px;border-radius:var(--r-chip);background:var(--surface);
+  border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--ink2);cursor:pointer;
+  white-space:nowrap;transition:.15s;min-height:36px;display:flex;align-items:center;gap:5px}
+.jchip:hover{border-color:rgba(15,140,132,.4)}
+.jchip.on{background:var(--brand);color:#fff;border-color:var(--brand);box-shadow:var(--sh-sm)}
+
+section.block{padding:24px 0 4px;scroll-margin-top:108px}
+.bhead{display:flex;align-items:center;gap:11px;margin-bottom:15px}
+.bhead h3{font-size:19px;font-weight:700}
+.bhead .sub{font-size:11.5px;color:var(--ink3);font-weight:500;margin-top:1px;font-family:'Noto Sans JP',sans-serif}
+
+/* basics (Notionの罫線テーブル感) */
+.binfo{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--sh-sm)}
+.brow{padding:14px 16px;border-bottom:1px solid var(--line2)}
+.brow:last-child{border-bottom:none}
+@media(min-width:600px){
+  .binfo{display:grid;grid-template-columns:1fr 1fr}
+  .brow:nth-child(odd){border-right:1px solid var(--line2)}
+}
+.brow .bl{font-size:11px;color:var(--ink3);font-weight:700;letter-spacing:.03em}
+.brow .bv{font-size:15px;font-weight:700;margin-top:2px;line-height:1.4}
+.brow .bn{font-size:12px;color:var(--ink2);margin-top:5px;line-height:1.55;font-weight:400}
+
+/* fx (為替ウィジェット) */
+.fxchart{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:10px 10px 6px;box-shadow:var(--sh-sm);margin-bottom:12px;overflow:hidden}
+.fxchart iframe{width:100%;height:240px;border:0;display:block}
+.fxchartcap{font-size:11px;color:var(--ink3);padding:6px 6px 4px;line-height:1.5}
+.fxbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:18px;box-shadow:var(--sh-sm)}
+.fxstate{font-size:13.5px;color:var(--ink2);text-align:center;padding:14px 4px;line-height:1.7}
+.fxtop{display:flex;justify-content:flex-end;margin-bottom:10px}
+.fxrefresh{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);
+  color:var(--brand);font-family:'Noto Sans JP',sans-serif;font-size:12.5px;font-weight:700;
+  padding:7px 14px;border-radius:var(--r-chip);cursor:pointer;min-height:36px;transition:.15s}
+.fxrefresh:hover{border-color:var(--brand);background:var(--brand-soft)}
+.fxrefresh:active{transform:scale(.97)}
+.fxrefresh svg{width:14px;height:14px}
+.fxhero{background:var(--brand-soft);border-radius:14px;padding:16px 18px;text-align:center}
+.fxbig{font-family:var(--disp);font-size:18px;font-weight:700;color:var(--ink)}
+.fxbig b{font-size:26px;color:var(--accent-d);margin:0 2px}
+.fxsub{font-size:13px;color:var(--ink2);margin-top:4px;font-weight:500}
+.fxcalc{display:grid;gap:9px;margin-top:14px}
+.fxrow{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);
+  border-radius:12px;padding:8px 10px}
+.fxrow input{flex:1;min-width:0;border:none;background:transparent;font-size:16px;font-weight:700;
+  color:var(--ink);font-family:'Noto Sans JP',sans-serif;-moz-appearance:textfield;outline:none;
+  padding:6px 4px;min-height:36px}
+.fxrow input::-webkit-outer-spin-button,.fxrow input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.fxrow .fxunit{font-size:13px;font-weight:700;color:var(--ink2);flex:0 0 auto}
+.fxrow .fxeq{color:var(--ink3);flex:0 0 auto}
+.fxrow .fxout{flex:0 0 auto;font-size:15px;font-weight:700;color:var(--brand-d);text-align:right;min-width:96px;font-family:var(--disp)}
+.fxtable{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+.fxtable td{padding:10px 12px;border-bottom:1px solid var(--line2)}
+.fxtable tr:last-child td{border-bottom:none}
+.fxtable td:first-child{color:var(--ink2);font-weight:500}
+.fxtable .fxto{text-align:right;font-weight:700;font-family:var(--disp)}
+.fxtable .fxto small{font-size:11px;color:var(--ink3);font-weight:500;margin-left:2px}
+.fxmeta{font-size:10.5px;color:var(--ink3);margin-top:12px;line-height:1.5}
+
+/* safety */
+.safe{display:grid;gap:12px}
+.scat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--sh-sm)}
+.scat .st{display:flex;align-items:center;gap:10px;padding:13px 16px;font-weight:700;font-size:15px;
+  font-family:var(--disp);border-bottom:1px solid var(--line2)}
+.scat .st .ichip{width:34px;height:34px;font-size:17px;background:var(--accent-soft)}
+.scat ul{list-style:none;padding:6px 16px 13px}
+.scat li{position:relative;padding:8px 0 8px 20px;font-size:14px;line-height:1.6;border-bottom:1px solid var(--line2)}
+.scat li:last-child{border-bottom:none}
+.scat li::before{content:"";position:absolute;left:2px;top:15px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* phrases (3段階層・Duolingoの親しみ) */
+.pscene{margin-bottom:20px}
+.pscene .pt{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;margin-bottom:10px;font-family:var(--disp)}
+.pscene .pt .ichip{width:32px;height:32px;font-size:16px}
+.pcard{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:13px 15px;margin-bottom:9px;box-shadow:var(--sh-sm);cursor:pointer;transition:.13s}
+.pcard:hover{border-color:rgba(15,140,132,.45);box-shadow:var(--sh-md)}
+.pcard:active{transform:scale(.99);background:var(--brand-soft)}
+.pcard .ptxt{flex:1;min-width:0}
+.pcard .pja{font-size:12px;color:var(--ink3);font-weight:700}
+.pcard .ploc{font-size:21px;font-weight:700;color:var(--brand-d);line-height:1.35;margin:1px 0;word-break:break-word;font-family:var(--disp)}
+.pcard .prom{font-size:13px;color:var(--ink2);font-weight:500}
+.pcard .pcp{flex:0 0 auto;color:var(--ink3);display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--bg)}
+.pcard .pcp svg{width:17px;height:17px}
+.pcard .pspeak{flex:0 0 auto;border:none;cursor:pointer;color:var(--brand);display:grid;place-items:center;
+  width:38px;height:38px;border-radius:10px;background:var(--brand-soft);transition:.12s}
+.pcard .pspeak:hover{background:#dce7f1}
+.pcard .pspeak:active{transform:scale(.92)}
+.pcard .pspeak svg{width:19px;height:19px}
+.secnote{font-size:11px;color:var(--ink3);margin-top:10px;line-height:1.55}
+
+/* 出発前チェックリスト */
+.chklist{display:grid;gap:9px}
+.chkrow{display:flex;align-items:flex-start;gap:12px;background:var(--surface);border:1px solid var(--line);
+  border-radius:13px;padding:13px 15px;box-shadow:var(--sh-sm);cursor:pointer;transition:.13s}
+.chkrow:active{transform:scale(.995)}
+.chkrow input{position:absolute;opacity:0;width:0;height:0}
+.chkbox{flex:0 0 auto;width:22px;height:22px;border-radius:7px;border:2px solid var(--ink3);margin-top:1px;
+  display:grid;place-items:center;transition:.15s;position:relative}
+.chkbox::after{content:"";width:11px;height:6px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;
+  transform:rotate(-45deg) translateY(-1px);opacity:0;transition:.15s}
+.chkrow input:checked + .chkbox{background:var(--brand);border-color:var(--brand)}
+.chkrow input:checked + .chkbox::after{opacity:1}
+.chktxt{font-size:14px;line-height:1.5}
+.chktxt b{font-weight:700;font-size:14.5px}
+.chkn{display:block;font-size:12px;color:var(--ink2);margin-top:2px;font-weight:400}
+.chkrow.done .chktxt b,.chkrow input:checked ~ .chktxt b{color:var(--ink3);text-decoration:line-through}
+
+/* 到着後ガイド（番号付きステップ） */
+.steps{list-style:none;counter-reset:step;display:grid;gap:11px;padding:0}
+.steps li{counter-increment:step;position:relative;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:14px 15px 14px 54px;box-shadow:var(--sh-sm)}
+.steps li::before{content:counter(step);position:absolute;left:13px;top:13px;width:28px;height:28px;border-radius:50%;
+  background:var(--brand);color:#fff;font-family:var(--disp);font-weight:700;font-size:14px;display:grid;place-items:center}
+.steps .stept{font-weight:700;font-size:15px}
+.steps .stepd{font-size:13px;color:var(--ink2);margin-top:3px;line-height:1.6}
+
+/* トラブル対処フロー */
+.bhead2{font-family:var(--disp);font-weight:700;font-size:16px;margin:22px 0 12px}
+.flows{display:grid;gap:12px}
+.flow{background:var(--danger-soft);border:1px solid #f4d2d6;border-radius:14px;padding:13px 16px}
+.flow .flowt{font-weight:700;font-size:14.5px;color:var(--danger);margin-bottom:6px}
+.flowsteps{margin:0;padding-left:20px}
+.flowsteps li{font-size:13.5px;line-height:1.7;padding:1px 0}
+
+/* よくある不安Q&A */
+.faq{display:grid;gap:9px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:13px;box-shadow:var(--sh-sm);overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:700;font-size:14.5px;position:relative;padding-right:42px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:17px;top:50%;width:9px;height:9px;border-right:2px solid var(--ink3);
+  border-bottom:2px solid var(--ink3);transform:translateY(-70%) rotate(45deg);transition:.2s}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+.faq details[open] summary{color:var(--brand-d)}
+.faq p{padding:0 16px 15px;font-size:13.5px;color:var(--ink2);line-height:1.75;margin:0}
+.faq p b{color:var(--ink);font-weight:700}
+.copyhint{font-size:12px;color:var(--ink3);margin-bottom:13px;display:flex;align-items:center;gap:6px}
+
+/* emergency (Notionの赤callout + tel) */
+.emerg{display:grid;gap:11px}
+.erow{display:flex;align-items:center;gap:13px;background:var(--danger-soft);border:1px solid #f4d2d6;
+  border-left:4px solid var(--danger);border-radius:14px;padding:13px 15px}
+.erow .eic{flex:0 0 auto;width:36px;height:36px;border-radius:10px;background:#fff;display:grid;place-items:center;font-size:17px;box-shadow:var(--sh-sm)}
+.erow .ebody{flex:1;min-width:0}
+.erow .el{font-size:12px;color:var(--ink2);font-weight:700}
+.erow .ev{font-size:18px;font-weight:700;margin-top:1px;line-height:1.3;font-family:var(--disp)}
+.erow .ev a{color:var(--danger)}
+.erow .en2{font-size:12px;color:var(--ink2);margin-top:4px;line-height:1.5;font-weight:400}
+
+/* apps */
+.apps{display:grid;gap:10px}
+.arow{display:flex;align-items:flex-start;gap:12px;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:13px 15px;box-shadow:var(--sh-sm)}
+.arow .aic{flex:0 0 auto;width:38px;height:38px;border-radius:11px;background:var(--brand-soft);display:grid;place-items:center;font-size:19px}
+.arow .an{font-weight:700;font-size:15px;font-family:var(--disp)}
+.arow .ac{display:inline-block;font-size:10.5px;color:var(--brand-d);background:var(--brand-soft);padding:2px 9px;border-radius:var(--r-chip);margin-left:7px;font-weight:700;vertical-align:middle}
+.arow .ad{font-size:12.5px;color:var(--ink2);margin-top:3px;line-height:1.55;font-weight:400}
+
+/* note CTA (Linear premium + Duolingoぷっくりボタン) */
+.cta{position:relative;overflow:hidden;border-radius:20px;padding:28px 22px;text-align:center;margin:30px 0 6px;
+  background:var(--premium);color:#fff;box-shadow:var(--sh-glow)}
+.cta::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(80% 70% at 85% 0%,rgba(255,255,255,.22),transparent 55%);pointer-events:none}
+.cta .ce{position:relative;font-size:30px}
+.cta h3{position:relative;font-size:18px;font-weight:900;margin-top:6px;color:#fff}
+.cta p{position:relative;font-size:13px;opacity:.95;margin-top:9px;line-height:1.7;font-weight:400}
+.cta a{position:relative;display:inline-block;margin-top:18px;
+  background:linear-gradient(180deg,#d6a73f,#c2952f);color:#2a1e06;font-weight:900;
+  padding:13px 32px;border-radius:var(--r-btn);font-size:14.5px;min-height:48px;
+  box-shadow:0 4px 0 #8f6c1f;transition:transform .1s, box-shadow .1s}
+.cta a:active{transform:translateY(3px);box-shadow:0 1px 0 #8f6c1f}
+.cta a.disabled{background:rgba(255,255,255,.22);color:rgba(255,255,255,.75);cursor:default;box-shadow:none}
+
+footer{text-align:center;color:var(--ink3);font-size:11px;padding:34px 0 44px;line-height:1.8}
+.disc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;
+  font-size:11.5px;color:var(--ink2);margin-top:22px;line-height:1.65;text-align:left;box-shadow:var(--sh-sm)}
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:11px 20px;border-radius:var(--r-chip);font-size:13px;font-weight:700;
+  opacity:0;pointer-events:none;transition:.25s;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:88%}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(min-width:720px){.hero h1{font-size:28px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hbar">
+    <div class="logo" onclick="goHome()"><span class="em" style="color:var(--accent);display:inline-flex"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="12" y1="11" x2="12" y2="17"/></svg></span>たびまえ <small>旅マエ準備帳</small></div>
+    <div class="back" id="backBtn" onclick="goHome()">← 国一覧</div>
+  </div>
+</header>
+
+<!-- HOME -->
+<main id="home">
+  <div class="wrap">
+    <div class="hero">
+      <span class="eyebrow"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8L8 11l-2 2-2-.5-1 1 3 2 2 3 1-1L7 16l2-2 4 3.7a.5.5 0 0 0 .8-.5z"/></svg>渡航前にサッと確認</span>
+      <h1>はじめての海外でも<br>迷わない・<span class="g">不安をなくす</span></h1>
+      <p>出発前の準備からビザ・お金・治安・現地のひとこと（音声つき）・もしもの対処まで、<b>初めての海外旅行に必要なこと</b>を国別にまとめました。まず行く国を選んでください。</p>
+      <div class="herotrust">情報は2026年6月時点の目安。最終確認は各国公式・外務省でお願いします。</div>
+    </div>
+    <div class="homesearch">
+      <span class="hsicon">🔍</span>
+      <input id="homeq" type="text" inputmode="search" placeholder="国名で検索（例：タイ / Thailand）" oninput="filterHome(this.value)">
+    </div>
+    <div id="countryList"></div>
+    <div id="noHit" class="nohit" style="display:none">該当する国が見つかりませんでした。</div>
+
+    <div class="sectitle">❓ はじめての海外旅行Q&A</div>
+    <div class="faq">
+      <details><summary>ビザって必要？</summary><p>国によります。日本のパスポートは多くの国で短期観光ビザ不要ですが、必要な国もあります。各国ページの<b>「ビザ・入国」</b>で確認してください。</p></details>
+      <details><summary>ESTA・eTA・ETAって何？</summary><p>アメリカ(ESTA)・カナダ(eTA)・イギリス(ETA)などの<b>電子渡航認証</b>です。ビザは不要でも、これを<b>出発前にオンライン申請</b>しないと搭乗できません。有料・承認に時間がかかることも。</p></details>
+      <details><summary>シェンゲン協定って？</summary><p>ヨーロッパの多くの国でつくる枠組み。<b>180日のうち合計90日まで</b>ビザなしで滞在できます。フランス＋イタリアなど周遊する場合、滞在日数は<b>合算</b>されます。</p></details>
+      <details><summary>パスポートの残存期間は？</summary><p>国により<b>入国時に3〜6か月以上</b>必要なことが多いです。期限が近い人は早めに更新を。各国ページで確認できます。</p></details>
+      <details><summary>チップは必要？</summary><p>国によります（アメリカは事実上必須、アジアの多くは不要）。各国ページの<b>「基本情報」</b>のチップ欄を見てください。</p></details>
+      <details><summary>水道水は飲める？</summary><p>これも国次第。飲める国とお腹を壊しやすい国があります。各国「基本情報」の水の欄を確認し、不安ならミネラルウォーターを。</p></details>
+      <details><summary>海外旅行保険は入るべき？</summary><p><b>強くおすすめします。</b>国によっては医療費が非常に高額（救急車も有料）。クレジットカード付帯では不足することもあるので内容を確認。</p></details>
+      <details><summary>現金とカード、どっちがいい？</summary><p>キャッシュレスが進む国も増えています。<b>海外対応のカード＋少額の現地通貨</b>の組み合わせが安心。両替は街中が好レートのことが多いです。</p></details>
+      <details><summary>スマホ・ネットはどうする？</summary><p>eSIM・現地SIM・Wi-Fiルーターの3択。今は<b>eSIM</b>が手軽。各国「基本情報／アプリ」を参照。地図・翻訳・配車アプリは出発前に入れておくと安心。</p></details>
+      <details><summary>もしもの時は？</summary><p>各国ページの<b>「緊急時・トラブル対処」</b>に番号と手順をまとめています。出発前に外務省<b>「たびレジ」</b>に登録すると、現地の安全情報が届きます。</p></details>
+    </div>
+  </div>
+</main>
+
+<!-- COUNTRY -->
+<main id="country" class="wrap"></main>
+
+<div class="toast" id="toast">コピーしました</div>
+
+<footer class="wrap">
+  <div class="disc">
+    ※ 当サイトの情報は <b>2026年6月時点</b> の一般的な目安です。ビザ・治安・法律・連絡先・為替などは変わることがあります。
+    渡航前に必ず外務省「海外安全ホームページ」や各国の公式情報で最新をご確認ください。為替の最新レートのみオンライン取得です。
+  </div>
+  <div style="margin-top:18px">© たびまえ ／ 情報更新：2026年6月</div>
+</footer>
+
+<!-- データ：国を増やすときはここに1行追加するだけ -->
+<script src="data/thailand.js"></script>
+<script src="data/korea.js"></script>
+<script src="data/taiwan.js"></script>
+<script src="data/usa.js"></script>
+<script src="data/china.js"></script>
+<script src="data/hongkong.js"></script>
+<script src="data/vietnam.js"></script>
+<script src="data/singapore.js"></script>
+<script src="data/philippines.js"></script>
+<script src="data/indonesia.js"></script>
+<script src="data/malaysia.js"></script>
+<script src="data/france.js"></script>
+<script src="data/italy.js"></script>
+<script src="data/spain.js"></script>
+<script src="data/germany.js"></script>
+<script src="data/uk.js"></script>
+<script src="data/australia.js"></script>
+<script src="data/guam.js"></script>
+<script src="data/canada.js"></script>
+<script src="data/india.js"></script>
+<script src="data/cambodia.js"></script>
+<script src="data/uae.js"></script>
+<script src="data/turkey.js"></script>
+<script src="data/egypt.js"></script>
+<script src="data/switzerland.js"></script>
+<script src="data/netherlands.js"></script>
+<script src="data/belgium.js"></script>
+<script src="data/greece.js"></script>
+<script src="data/portugal.js"></script>
+<script src="data/newzealand.js"></script>
+<script src="data/mexico.js"></script>
+<script src="data/austria.js"></script>
+<script src="data/czech.js"></script>
+<script src="data/hungary.js"></script>
+<script src="data/poland.js"></script>
+<script src="data/finland.js"></script>
+<script src="data/sweden.js"></script>
+<script src="data/norway.js"></script>
+<script src="data/denmark.js"></script>
+<script src="data/ireland.js"></script>
+<script src="data/croatia.js"></script>
+<script src="data/srilanka.js"></script>
+<script src="data/nepal.js"></script>
+<script src="data/mongolia.js"></script>
+<script src="data/laos.js"></script>
+<script src="data/morocco.js"></script>
+<script src="data/southafrica.js"></script>
+<script src="data/brazil.js"></script>
+<script src="data/fiji.js"></script>
+<script src="data/saipan.js"></script>
+<script src="data/landmarks.js"></script>
+<script src="data/ex_1.js"></script>
+<script src="data/ex_2.js"></script>
+<script src="data/ex_3.js"></script>
+<script src="data/ex_4.js"></script>
+<script src="data/ex_5.js"></script>
+
+<script>
+const ORDER = ["korea","taiwan","thailand","china","hongkong","vietnam","singapore","philippines","indonesia","malaysia","india","cambodia","srilanka","nepal","mongolia","laos","france","italy","spain","germany","uk","switzerland","netherlands","belgium","ireland","croatia","greece","portugal","austria","czech","hungary","poland","finland","sweden","norway","denmark","usa","canada","mexico","brazil","australia","guam","newzealand","fiji","saipan","uae","turkey","egypt","morocco","southafrica"];
+const REGIONS = ["アジア","ヨーロッパ","北米・ハワイ","オセアニア","中南米","中東・アフリカ"];
+const D = window.TABIMAE || {};
+const SECTIONS = [
+  {key:"checklist",label:"準備",     title:"出発前チェックリスト", sub:"タップでチェック・自動保存"},
+  {key:"basics",   label:"基本情報", title:"基本情報", sub:"通貨・チップ・交通・気候など"},
+  {key:"entry",    label:"入国",     title:"ビザ・入国", sub:"ビザ要否・事前申請・滞在日数"},
+  {key:"fx",       label:"為替",     title:"為替（円との相場）", sub:"現在レート・かんたん換算"},
+  {key:"budget",   label:"予算",     title:"予算の目安", sub:"食事・交通・宿・1日の目安"},
+  {key:"safety",   label:"注意点",   title:"渡航前の注意点", sub:"治安・詐欺・マナー・法律"},
+  {key:"phrases",  label:"会話",     title:"場面別フレーズ", sub:"タップで現地語をコピー／🔊で発音"},
+  {key:"arrival",  label:"到着後",   title:"着いたら、まず", sub:"入国〜市内までの最初の動き"},
+  {key:"emergency",label:"緊急時",   title:"緊急時・トラブル対処", sub:"連絡先と「こんな時どうする」"},
+  {key:"apps",     label:"アプリ",   title:"便利アプリ", sub:"入れておくと安心"},
+];
+// 国別の音声合成ロケール（フレーズ読み上げ用 BCP-47）
+const SPEECH_LANG = {korea:"ko-KR",taiwan:"zh-TW",thailand:"th-TH",china:"zh-CN",hongkong:"zh-HK",vietnam:"vi-VN",singapore:"en-SG",philippines:"fil-PH",indonesia:"id-ID",malaysia:"ms-MY",india:"hi-IN",cambodia:"km-KH",srilanka:"si-LK",nepal:"ne-NP",mongolia:"mn-MN",laos:"lo-LA",france:"fr-FR",italy:"it-IT",spain:"es-ES",germany:"de-DE",uk:"en-GB",switzerland:"de-CH",netherlands:"nl-NL",belgium:"nl-BE",ireland:"en-IE",croatia:"hr-HR",greece:"el-GR",portugal:"pt-PT",austria:"de-AT",czech:"cs-CZ",hungary:"hu-HU",poland:"pl-PL",finland:"fi-FI",sweden:"sv-SE",norway:"nb-NO",denmark:"da-DK",usa:"en-US",canada:"en-CA",mexico:"es-MX",brazil:"pt-BR",australia:"en-AU",guam:"en-US",newzealand:"en-NZ",fiji:"en-US",saipan:"en-US",uae:"ar-AE",turkey:"tr-TR",egypt:"ar-EG",morocco:"ar-MA",southafrica:"en-ZA"};
+const LV = {1:{t:"比較的安全",c:"lv1"},2:{t:"注意",c:"lv2"},3:{t:"要注意",c:"lv3"},4:{t:"危険",c:"lv4"}};
+
+/* ---------- SVGアイコン（Lucide系ライン） ---------- */
+const SVGI = p => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const IC = {
+  compass:SVGI('<circle cx="12" cy="12" r="10"/><polygon points="16.2 7.8 14.1 14.1 7.8 16.2 9.9 9.9 16.2 7.8"/>'),
+  chart:SVGI('<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>'),
+  shieldAlert:SVGI('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/>'),
+  message:SVGI('<path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.7-.7L3 21l1.4-4.2A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/>'),
+  lifebuoy:SVGI('<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.9" y1="4.9" x2="9.2" y2="9.2"/><line x1="14.8" y1="14.8" x2="19.1" y2="19.1"/><line x1="14.8" y1="9.2" x2="19.1" y2="4.9"/><line x1="4.9" y1="19.1" x2="9.2" y2="14.8"/>'),
+  smartphone:SVGI('<rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="12" y1="18" x2="12.01" y2="18"/>'),
+  banknote:SVGI('<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/>'),
+  clock:SVGI('<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/>'),
+  shield:SVGI('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'),
+  sun:SVGI('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/>'),
+  alert:SVGI('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>'),
+  users:SVGI('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>'),
+  scale:SVGI('<path d="M12 3v18"/><path d="M7 21h10"/><path d="M5 7h14"/><path d="m5 7-3 6h6z"/><path d="m19 7-3 6h6z"/>'),
+  shirt:SVGI('<path d="M20.4 3.5 16 2a4 4 0 0 1-8 0L3.6 3.5a2 2 0 0 0-1.3 2.2l.6 3.5a1 1 0 0 0 1 .8H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.1a1 1 0 0 0 1-.8l.6-3.5a2 2 0 0 0-1.3-2.2z"/>'),
+  smile:SVGI('<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>'),
+  utensils:SVGI('<path d="M4 2v7a3 3 0 0 0 6 0V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-3 4.5V11a1 1 0 0 0 1 1h2zm0 0v7"/>'),
+  bag:SVGI('<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>'),
+  car:SVGI('<path d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13"/><path d="M5 13h14a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z"/><circle cx="7.5" cy="17.5" r="1"/><circle cx="16.5" cy="17.5" r="1"/>'),
+  bed:SVGI('<path d="M3 18V7a1 1 0 0 1 1-1h11a4 4 0 0 1 4 4v8"/><path d="M3 14h18"/><path d="M21 18v-3"/><circle cx="8" cy="10" r="1.5"/>'),
+  pin:SVGI('<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>'),
+  cross:SVGI('<path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/>'),
+  hash:SVGI('<line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>'),
+  phone:SVGI('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/>'),
+  fileText:SVGI('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>'),
+  globe:SVGI('<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/>'),
+  landmark:SVGI('<line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/>'),
+  plane:SVGI('<path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8L8 11l-2 2-2-.5-1 1 3 2 2 3 1-1L7 16l2-2 4 3.7a.5.5 0 0 0 .8-.5z"/>'),
+  suitcase:SVGI('<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="12" y1="11" x2="12" y2="17"/>'),
+  refresh:SVGI('<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/>'),
+  volume:SVGI('<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19.5 5a9 9 0 0 1 0 14"/>'),
+  passport:SVGI('<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="2.6"/><path d="M9 16h6"/>'),
+  wallet:SVGI('<path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2"/><path d="M3 7v10a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M21 11h-5a2 2 0 0 0 0 4h5z"/>'),
+  checklist:SVGI('<rect x="8" y="3" width="8" height="4" rx="1"/><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="m9 14 2 2 4-4"/>'),
+  arrival:SVGI('<path d="M9 19l-6 2V6l6-2 6 2 6-2v9"/><path d="M9 4v15"/><path d="M15 6v7"/><path d="M19 21l3-3-3-3"/><path d="M14 18h8"/>'),
+};
+const sectionIcon = k => ({checklist:IC.checklist,basics:IC.compass,entry:IC.passport,fx:IC.chart,budget:IC.wallet,safety:IC.shieldAlert,phrases:IC.message,arrival:IC.arrival,emergency:IC.lifebuoy,apps:IC.smartphone}[k]||IC.compass);
+const secHas = (c,k) => (k==='entry') ? Array.isArray(c.entry)&&c.entry.length>0
+  : (k==='budget') ? Array.isArray(c.budget)&&c.budget.length>0 : true;
+function icoCat(c){c=c||'';if(/治安|防犯/.test(c))return IC.shield;if(/詐欺|ぼったくり/.test(c))return IC.alert;if(/マナー|文化/.test(c))return IC.users;if(/法律|禁止/.test(c))return IC.scale;if(/服装/.test(c))return IC.shirt;return IC.shieldAlert;}
+function icoScene(s){s=s||'';if(/あいさつ/.test(s))return IC.smile;if(/レストラン|飲食|屋台|カフェ/.test(s))return IC.utensils;if(/買い物/.test(s))return IC.bag;if(/移動|タクシー/.test(s))return IC.car;if(/ホテル|宿泊/.test(s))return IC.bed;if(/道案内|交通/.test(s))return IC.pin;if(/体調|薬|病院/.test(s))return IC.cross;if(/トラブル|緊急/.test(s))return IC.lifebuoy;if(/数字|あいづち/.test(s))return IC.hash;return IC.message;}
+const regionIcon = r => ({"アジア":IC.globe,"ヨーロッパ":IC.landmark,"北米・ハワイ":IC.plane,"オセアニア":IC.palm||IC.globe,"中南米":IC.globe,"中東・アフリカ":IC.landmark}[r]||IC.globe);
+
+/* ---------- ヒーロー：国別ランドマーク・シルエット（landmarks.js） ---------- */
+function heroArt(c){
+  const L=window.LANDMARK||{};
+  const lm=L[c.id]||L._default||'';
+  return `<svg class="heroart" viewBox="0 0 400 130" preserveAspectRatio="xMidYMax meet" aria-hidden="true">`+
+    `<circle cx="334" cy="34" r="17" fill="#d9b85f" opacity=".55"/><g opacity=".92">${lm}</g></svg>`;
+}
+
+const COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const grad = () => 'linear-gradient(140deg,#2a4d76 0%,#1c3858 55%,#16263f 100%)';
+
+function cardHTML(id){
+  const c=D[id];
+  const q=esc((c.name+' '+c.nameEn).toLowerCase());
+  return `<div class="ccard" data-q="${q}" onclick="openCountry('${id}')">
+    <div class="cflag" style="background:${grad(c)}"><span>${c.flag}</span></div>
+    <div class="cinfo">
+      <div class="ctop"><span class="cname">${esc(c.name)}</span></div>
+      <div class="cen">${esc(c.nameEn)}</div>
+      <div class="ctag">${esc(c.tagline)}</div>
+    </div></div>`;
+}
+function renderHome(){
+  const list=document.getElementById('countryList');
+  list.innerHTML = REGIONS.map(reg=>{
+    const ids=ORDER.filter(id=>D[id]&&(D[id].region||'アジア')===reg);
+    if(!ids.length) return '';
+    return `<div class="sectitle" data-reg="${reg}"><span class="regico">${regionIcon(reg)}</span>${reg}<span class="regcount">${ids.length}</span></div>`+
+      `<div class="grid" data-reg="${reg}">`+ids.map(cardHTML).join('')+`</div>`;
+  }).join('');
+}
+function filterHome(q){
+  q=(q||'').trim().toLowerCase();
+  let any=false;
+  document.querySelectorAll('#countryList .ccard').forEach(card=>{
+    const hit=!q||(card.dataset.q||'').includes(q);
+    card.style.display=hit?'':'none'; if(hit)any=true;
+  });
+  document.querySelectorAll('#countryList .grid').forEach(g=>{
+    const vis=[...g.querySelectorAll('.ccard')].some(c=>c.style.display!=='none');
+    g.style.display=vis?'':'none';
+    const head=g.previousElementSibling;
+    if(head&&head.classList.contains('sectitle')) head.style.display=vis?'':'none';
+  });
+  document.getElementById('noHit').style.display=any?'none':'block';
+}
+
+let currentId=null, io=null;
+function renderCountry(id){
+  const c=D[id]; if(!c) return goHome();
+  const lv=LV[c.summary?.safety]||{t:"-",c:"lv2"}; const s=c.summary||{};
+  const secs = SECTIONS.filter(sec=>secHas(c,sec.key));
+  const jump = secs.map((sec,i)=>`<div class="jchip ${i===0?'on':''}" data-k="${sec.key}"
+      onclick="jumpTo('${sec.key}')">${sectionIcon(sec.key)} ${sec.label}</div>`).join('');
+  document.getElementById('country').innerHTML = `
+    <div class="chead" style="background:${grad(c)}">
+      ${heroArt(c)}
+      <div class="flag">${c.flag}</div>
+      <h2>${esc(c.name)} <span class="lang">／ ${esc(c.lang)}</span></h2>
+      <div class="tg">${esc(c.tagline)}</div>
+    </div>
+    <div class="summary">
+      <div class="stile"><div class="si">${IC.banknote}</div><div class="sl">通貨</div><div class="sv">${esc(s.currency||'-')}</div></div>
+      <div class="stile"><div class="si">${IC.clock}</div><div class="sl">時差</div><div class="sv">${esc(s.timezone||'-')}</div></div>
+      <div class="stile"><div class="si">${IC.shield}</div><div class="sl">治安</div><div><span class="lvbadge ${lv.c}">${lv.t}</span></div></div>
+      <div class="stile"><div class="si">${IC.sun}</div><div class="sl">ベスト</div><div class="sv">${esc(s.season||'-')}</div></div>
+    </div>
+    <div class="jumpnote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>下のボタンをタップすると各項目へ移動できます（色は今いる場所）</div>
+    <div class="jumpbar">${jump}</div>
+    ${secs.map(sec=>sectionHTML(c,sec)).join('')}`;
+  setupScrollSpy();
+  initFx(c);
+}
+
+function sectionHTML(c,sec){
+  return `<section class="block" id="sec-${sec.key}">
+    <div class="bhead"><span class="ichip">${sectionIcon(sec.key)}</span>
+      <div><h3>${sec.title}</h3><div class="sub">${sec.sub}</div></div></div>
+    ${bodyHTML(c,sec.key)}</section>`;
+}
+function kvGrid(arr){return `<div class="binfo">`+(arr||[]).map(b=>`<div class="brow">
+    <div class="bl">${esc(b.label)}</div><div class="bv">${esc(b.value)}</div>
+    ${b.note?`<div class="bn">${esc(b.note)}</div>`:''}</div>`).join('')+`</div>`;}
+
+function getBasic(c,re){const b=(c.basics||[]).find(x=>re.test(x.label));return b?b.value:'';}
+function entryVal(c,key){const x=(c.entry||[]).find(i=>i.label.indexOf(key)>=0);return x?x.value:'';}
+
+/* 出発前チェックリスト（国別・localStorage保存） */
+function checklistItems(c){
+  const visa=[entryVal(c,'ビザ'),entryVal(c,'事前申請')].filter(Boolean).join(' / ');
+  return [
+    {t:'パスポートの残存期間を確認', n:entryVal(c,'パスポート残存')||'入国条件を満たすか確認'},
+    {t:'ビザ・事前申請の確認', n:visa||'各国の入国条件を確認'},
+    {t:'海外旅行保険に加入', n:'医療費が高額な国も。必ず入る'},
+    {t:'航空券・宿の予約を確認（印刷かスクショ）', n:''},
+    {t:'パスポート・保険証券のコピーを別保管', n:'写真をスマホにも入れておく'},
+    {t:'現地通貨を少し＋海外対応カード', n:'通貨：'+(c.summary?.currency||'')},
+    {t:'SIM／eSIM・Wi-Fiの準備', n:getBasic(c,/ネット/)||''},
+    {t:'変換プラグ・充電器', n:getBasic(c,/電圧|プラグ/)||''},
+    {t:'地図・翻訳・配車アプリを入れる', n:'「アプリ」タブを参照'},
+    {t:'常備薬・処方薬（英文の説明があると安心）', n:''},
+    {t:'緊急連絡先をメモ（大使館・家族・カード会社）', n:'「緊急時」タブを参照'},
+    {t:'外務省「たびレジ」に登録', n:'渡航先の安全情報がメールで届く'}
+  ];
+}
+function getChecks(id){try{return new Set(JSON.parse(localStorage.getItem('tabimae_chk_'+id)||'[]'));}catch(e){return new Set();}}
+function toggleCheck(id,i,on){try{const s=getChecks(id);on?s.add(i):s.delete(i);localStorage.setItem('tabimae_chk_'+id,JSON.stringify([...s]));}catch(e){}}
+
+/* トラブル対処フロー（緊急セクションに追記） */
+function troubleFlow(){
+  const flows=[
+    {t:'パスポートを失くした', s:['まず警察で紛失・盗難届を出し、証明書をもらう','日本大使館・総領事館に連絡','「帰国のための渡航書」か旅券を申請（証明写真・身分証コピーが必要）']},
+    {t:'盗難・スリにあった', s:['身の安全を最優先に確保する','警察で被害届を出す（保険請求に必要）','カード会社へ連絡して利用停止']},
+    {t:'体調が悪い・ケガをした', s:['無理せず休む。海外保険のサポートデスクに相談','薬局（市販薬）か病院へ。重症は救急車（番号は上記）','受診したら領収書・診断書を保管（保険請求用）']},
+    {t:'お金が尽きた・カードが使えない', s:['カード会社へ連絡（不正利用や限度額も確認）','家族から海外送金（Wise等）を受け取る','どうしても困ったら大使館に相談']}
+  ];
+  return `<div class="bhead2">こんな時、どうする？</div><div class="flows">`+flows.map(f=>
+    `<div class="flow"><div class="flowt">${esc(f.t)}</div><ol class="flowsteps">`+
+    f.s.map(x=>`<li>${esc(x)}</li>`).join('')+`</ol></div>`).join('')+`</div>`;
+}
+
+function bodyHTML(c,key){
+  if(key==='checklist'){
+    const items=checklistItems(c); const saved=getChecks(c.id);
+    return `<div class="chklist">`+items.map((it,i)=>`<label class="chkrow">
+      <input type="checkbox" ${saved.has(i)?'checked':''} onchange="toggleCheck('${c.id}',${i},this.checked);this.closest('.chkrow').classList.toggle('done',this.checked)">
+      <span class="chkbox">${COPY_SVG?'':''}</span>
+      <span class="chktxt"><b>${esc(it.t)}</b>${it.n?`<span class="chkn">${esc(it.n)}</span>`:''}</span></label>`).join('')+
+      `</div><div class="secnote">チェックは自動保存されます（この端末のみ）。</div>`;
+  }
+  if(key==='arrival'){
+    const trans=getBasic(c,/交通/), net=getBasic(c,/ネット/), cur=c.summary?.currency||'';
+    const visa=[entryVal(c,'ビザ'),entryVal(c,'事前申請')].filter(Boolean).join(' / ');
+    const steps=[
+      {t:'入国審査・税関', d:'パスポート・帰りの航空券・滞在先住所を準備。'+(visa?'（ビザ/事前申請：'+visa+'）':'')},
+      {t:'通信を確保する', d:net||'空港でSIMを受け取る、またはeSIMを有効化。'},
+      {t:'お金を用意する', d:'両替は街中が好レートのことが多い。ATMは銀行併設が安心。通貨：'+cur},
+      {t:'市内へ移動する', d:(trans?trans+'　':'')+'ぼったくり回避はメーターか配車アプリで。'},
+      {t:'ホテルにチェックイン', d:'貴重品はセーフティボックスへ。Wi-Fiパスワードを確認。'}
+    ];
+    return `<ol class="steps">`+steps.map(s=>`<li><div class="stept">${esc(s.t)}</div><div class="stepd">${esc(s.d)}</div></li>`).join('')+`</ol>`;
+  }
+  if(key==='basics')return kvGrid(c.basics);
+  if(key==='entry')return kvGrid(c.entry)+`<div class="secnote">※ ビザ・入国制度は変更されます。渡航前に必ず各国大使館・外務省の最新情報をご確認ください。</div>`;
+  if(key==='budget')return kvGrid(c.budget)+`<div class="secnote">※ 物価・為替の目安です。時期やお店で変わります。</div>`;
+  if(key==='fx'){
+    // TradingViewにJPYクロスが存在する通貨のみチャート表示（希少通貨はレート表のみ）
+    const CHART_OK=['USD','EUR','GBP','AUD','NZD','CAD','CHF','CNY','HKD','SGD','THB','KRW','TWD','INR','IDR','MYR','PHP','VND','TRY','ZAR','MXN','BRL','SEK','NOK','DKK','PLN','CZK','HUF','AED','EGP'];
+    let chart='';
+    if(c.fxSymbol||CHART_OK.indexOf(c.currencyCode)>=0){
+      const sym=c.fxSymbol||('FX_IDC:'+c.currencyCode+'JPY');
+      const cfg=encodeURIComponent(JSON.stringify({symbol:sym,width:"100%",height:240,locale:"ja",
+        dateRange:"12M",colorTheme:"light",isTransparent:true,autosize:false,chartOnly:false}));
+      chart=`<div class="fxchart"><iframe title="${esc(c.name)}の為替チャート" scrolling="no"
+        frameborder="0" loading="lazy" allowtransparency="true"
+        src="https://www.tradingview-widget.com/embed-widget/mini-symbol-overview/?locale=ja#${cfg}"></iframe>
+        <div class="fxchartcap">1 ${esc(c.summary?.currency||'')} = 何円か の推移（直近12か月／提供 TradingView）</div></div>`;
+    }
+    return chart+`<div class="fxbox" id="fxbox"><div class="fxstate">現在レートを取得中…</div></div>`;
+  }
+  if(key==='safety')return `<div class="safe">`+c.safety.map(s=>`<div class="scat">
+    <div class="st"><span class="ichip">${icoCat(s.category)}</span>${esc(s.category)}</div>
+    <ul>${s.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')+`</div>`;
+  if(key==='phrases')return `<div class="copyhint"><span style="display:inline-grid;width:15px;height:15px">${COPY_SVG.replace('<svg','<svg width="15" height="15"')}</span>カードをタップで現地語をコピー（発音はカタカナ目安）</div>`+
+    c.phrases.map(p=>`<div class="pscene"><div class="pt"><span class="ichip">${icoScene(p.scene)}</span>${esc(p.scene)}</div>`+
+      p.items.map(it=>{const q=esc(it.local).replace(/'/g,"\\'");return `<div class="pcard" onclick="copyText('${q}')">
+        <div class="ptxt"><div class="pja">${esc(it.ja)}</div>
+          <div class="ploc">${esc(it.local)}</div><div class="prom">${esc(it.roman)}</div></div>
+        <button class="pbtn pspeak" onclick="event.stopPropagation();speak('${q}')" aria-label="読み上げ">${IC.volume}</button>
+        <span class="pcp" aria-hidden="true">${COPY_SVG}</span></div>`;}).join('')+`</div>`).join('');
+  if(key==='emergency')return `<div class="emerg">`+c.emergency.map(e=>{
+    const tel=/^[+0-9][0-9\- ]+$/.test(e.value);
+    const val=tel?`<a href="tel:${e.value.replace(/[^+0-9]/g,'')}">${esc(e.value)}</a>`:esc(e.value);
+    return `<div class="erow"><div class="eic">${tel?IC.phone:IC.fileText}</div><div class="ebody">
+      <div class="el">${esc(e.label)}</div><div class="ev">${val}</div>
+      ${e.note?`<div class="en2">${esc(e.note)}</div>`:''}</div></div>`;
+  }).join('')+`</div>`+
+    `<div class="secnote">※ 緊急番号・連絡先は変わることがあります。出発前にメモし、現地の最新情報や外務省「海外安全ホームページ」もご確認ください。</div>`+
+    troubleFlow();
+  if(key==='apps')return `<div class="apps">`+c.apps.map(a=>`<div class="arow"><div class="aic">${IC.smartphone}</div>
+    <div><div class="an">${esc(a.name)}<span class="ac">${esc(a.category)}</span></div>
+    <div class="ad">${esc(a.desc)}</div></div></div>`).join('')+`</div>`;
+  return '';
+}
+
+function jumpTo(key){const el=document.getElementById('sec-'+key);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+function setActiveChip(key){document.querySelectorAll('.jchip').forEach(ch=>ch.classList.toggle('on',ch.dataset.k===key));}
+function setupScrollSpy(){
+  if(io)io.disconnect();
+  io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)setActiveChip(e.target.id.replace('sec-',''));});},
+    {rootMargin:'-110px 0px -65% 0px',threshold:0});
+  SECTIONS.forEach(s=>{const el=document.getElementById('sec-'+s.key);if(el)io.observe(el);});
+}
+
+function speak(t){
+  try{
+    if(!('speechSynthesis' in window)){ showToast('この端末は読み上げ非対応です'); return; }
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(t);
+    u.lang=SPEECH_LANG[currentId]||'en-US'; u.rate=0.9;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+function copyText(t){
+  const done=()=>showToast('コピー：'+t);
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(done).catch(()=>fallbackCopy(t,done));}
+  else fallbackCopy(t,done);
+}
+function fallbackCopy(t,cb){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);
+  ta.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(ta);cb&&cb();}
+let toastTimer;
+function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1600);}
+
+/* ---------- 為替（円との相場） ---------- */
+let _fxPromise=null, _fxRate=null; // _fxRate={code,r}  r = 1円あたりの現地通貨
+// レート取得：①Coinbase(即時・市場レート/チャートに近い) → 失敗時 ②open.er-api(日次) にフォールバック
+function getRates(){
+  if(_fxPromise) return _fxPromise;
+  _fxPromise = fetch('https://api.coinbase.com/v2/exchange-rates?currency=JPY')
+    .then(r=>r.json())
+    .then(d=>{
+      if(d&&d.data&&d.data.rates){
+        const o={}; for(const k in d.data.rates) o[k]=parseFloat(d.data.rates[k]);
+        return {rates:o, src:'Coinbase（最新の市場レート）'};
+      }
+      throw new Error('cb');
+    })
+    .catch(()=> fetch('https://open.er-api.com/v6/latest/JPY').then(r=>r.json()).then(d=>{
+      if(d&&d.rates) return {rates:d.rates, src:'open.er-api.com（'+((d.time_last_update_utc||'').replace(/ \+0000.*/,' UTC'))+'）'};
+      throw new Error('er');
+    }));
+  return _fxPromise;
+}
+// 金額表示（現地通貨・大きい数は整数、小さい数は小数2桁）
+function fxFmt(n){
+  if(!isFinite(n)) return '-';
+  if(n>=100) return Math.round(n).toLocaleString('ja-JP');
+  return (Math.round(n*100)/100).toLocaleString('ja-JP',{maximumFractionDigits:2});
+}
+// 「1単位=何円」レート表示（チャートと桁を揃える＝有効数字を確保）
+function fxRate(n){
+  if(!isFinite(n)) return '-';
+  if(n>=100) return Math.round(n).toLocaleString('ja-JP');
+  if(n>=1)   return n.toLocaleString('ja-JP',{maximumFractionDigits:2});
+  return n.toLocaleString('ja-JP',{maximumSignificantDigits:3}); // 例 0.105
+}
+function initFx(c){
+  const box=document.getElementById('fxbox'); if(!box) return;
+  const code=c.currencyCode, unit=c.summary?.currency||code;
+  if(!code){ box.innerHTML=`<div class="fxstate">為替情報は準備中です。</div>`; return; }
+  getRates().then(d=>{
+    const r=d.rates[code];
+    if(!r){ throw new Error('no rate'); }
+    _fxRate={code,r,unit};
+    const jpyPer1=1/r;              // 1現地通貨 = ?円
+    const localPer100=100*r;        // 100円 = ?現地通貨
+    const upd=d.src||'';
+    const jpyRows=[100,500,1000,5000,10000,30000];
+    const table=jpyRows.map(j=>`<tr><td>${j.toLocaleString('ja-JP')} 円</td>
+      <td class="fxto">${fxFmt(j*r)} <small>${esc(unit)}</small></td></tr>`).join('');
+    box.innerHTML=`
+      <div class="fxtop"><button class="fxrefresh" onclick="refreshFx()">${IC.refresh}更新</button></div>
+      <div class="fxhero">
+        <div class="fxbig">1 ${esc(unit)} ≈ <b>${fxRate(jpyPer1)}</b> 円</div>
+        <div class="fxsub">100 円 ≈ ${fxFmt(localPer100)} ${esc(unit)}</div>
+      </div>
+      <div class="fxcalc">
+        <div class="fxrow">
+          <input id="fxJpy" type="number" inputmode="decimal" value="10000" oninput="fxCalc('jpy')">
+          <span class="fxunit">円</span><span class="fxeq">→</span>
+          <span class="fxout" id="fxJpyOut">${fxFmt(10000*r)} ${esc(unit)}</span>
+        </div>
+        <div class="fxrow">
+          <input id="fxLoc" type="number" inputmode="decimal" value="1000" oninput="fxCalc('loc')">
+          <span class="fxunit">${esc(unit)}</span><span class="fxeq">→</span>
+          <span class="fxout" id="fxLocOut">${fxFmt(1000*jpyPer1)} 円</span>
+        </div>
+      </div>
+      <table class="fxtable"><tbody>${table}</tbody></table>
+      <div class="fxmeta">出典：${esc(upd)}／参考値・実際の両替には手数料がかかります</div>`;
+  }).catch(()=>{
+    box.innerHTML=`<div class="fxstate">⚠️ 為替レートを取得できませんでした（通信状況をご確認ください）。<br>
+      目安：通貨は「${esc(c.summary?.currency||'-')}」です。基本情報のレート目安も参照してください。</div>`;
+  });
+}
+function refreshFx(){
+  _fxPromise=null; _fxRate=null;
+  const box=document.getElementById('fxbox');
+  if(box) box.innerHTML='<div class="fxstate">最新レートを取得中…</div>';
+  const c=D[currentId]; if(c) initFx(c);
+}
+function fxCalc(from){
+  if(!_fxRate) return;
+  const {r,unit}=_fxRate;
+  if(from==='jpy'){
+    const v=parseFloat(document.getElementById('fxJpy').value)||0;
+    document.getElementById('fxJpyOut').innerHTML=`${fxFmt(v*r)} ${esc(unit)}`;
+  }else{
+    const v=parseFloat(document.getElementById('fxLoc').value)||0;
+    document.getElementById('fxLocOut').innerHTML=`${fxFmt(v/r)} 円`;
+  }
+}
+
+function openCountry(id){location.hash=id;}
+function goHome(){location.hash='';}
+function route(){
+  const id=location.hash.replace('#','');
+  if(id&&D[id]){currentId=id;
+    document.getElementById('home').style.display='none';
+    document.getElementById('country').style.display='block';
+    document.getElementById('backBtn').style.display='flex';
+    renderCountry(id);window.scrollTo(0,0);
+  }else{currentId=null;
+    document.getElementById('home').style.display='block';
+    document.getElementById('country').style.display='none';
+    document.getElementById('backBtn').style.display='none';}
+}
+window.addEventListener('hashchange',route);
+renderHome();route();
+
+// PWA: Service Worker登録（オフライン対応・GitHub Pages等のhttp(s)配信時のみ有効）
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>

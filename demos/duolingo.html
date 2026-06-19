@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>たびまえ — 旅前チェック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Duolingo design tokens */
+    --feather:#58CC02;        /* Feather Green (primary) */
+    --feather-dark:#58A700;   /* button bottom shadow */
+    --mask:#89E219;           /* Mask Green */
+    --gold:#FFC200;           /* Golden Yellow */
+    --gold-dark:#E6A800;
+    --cardinal:#FF4B4B;       /* Cardinal (red / danger) */
+    --cardinal-dark:#EA2B2B;
+    --eel:#4B4B4B;            /* Eel (text) */
+    --wolf:#777777;           /* secondary text */
+    --hare:#AFAFAF;           /* muted */
+    --swan:#E5E5E5;           /* borders */
+    --polar:#F7F7F7;          /* light bg */
+    --snow:#FFFFFF;           /* white */
+    --macaw:#1CB0F6;          /* blue accent */
+    --beetle:#CE82FF;         /* purple accent */
+    --fox:#FF9600;            /* orange */
+    --radius:16px;
+    --radius-lg:24px;
+    --font:'Zen Maru Gothic','Nunito',system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:var(--font);
+    color:var(--eel);
+    background:var(--snow);
+    line-height:1.6;
+    font-weight:700;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px 120px;}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--snow);
+    border-bottom:2px solid var(--swan);
+    padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;
+  }
+  .topbar-inner{max-width:880px;margin:0 auto;display:flex;align-items:center;gap:10px;min-height:44px;}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:22px;color:var(--feather);letter-spacing:.5px;}
+  .logo .owl{font-size:26px;line-height:1;}
+  .back-btn{
+    display:none;align-items:center;gap:6px;
+    color:var(--wolf);font-weight:800;font-size:15px;
+    padding:8px 12px;border-radius:12px;min-height:44px;
+  }
+  .back-btn:active{background:var(--polar);}
+  .back-btn .arrow{font-size:20px;line-height:1;}
+  body.is-country .back-btn{display:flex;}
+  .topbar-spacer{flex:1;}
+  .streak{display:flex;align-items:center;gap:5px;font-weight:900;color:var(--fox);font-size:16px;}
+
+  /* ===== HERO ===== */
+  .hero{
+    background:linear-gradient(160deg,#58CC02 0%,#46a302 100%);
+    border-radius:var(--radius-lg);
+    padding:30px 24px 28px;
+    margin-top:18px;
+    color:var(--snow);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 6px 0 #3a8a00;
+  }
+  .hero::before{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.12);top:-70px;right:-50px;}
+  .hero::after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.10);bottom:-50px;left:-30px;}
+  .hero-owl{font-size:56px;line-height:1;display:block;margin-bottom:8px;position:relative;filter:drop-shadow(0 4px 0 rgba(0,0,0,.12));}
+  .hero h1{font-size:26px;font-weight:900;position:relative;letter-spacing:.5px;}
+  .hero p{font-size:15px;font-weight:700;margin-top:8px;opacity:.95;position:relative;}
+  .hero-chip{
+    display:inline-block;margin-top:14px;background:var(--snow);color:var(--feather);
+    font-weight:900;font-size:14px;padding:9px 18px;border-radius:999px;position:relative;
+    box-shadow:0 3px 0 rgba(0,0,0,.12);
+  }
+
+  .section-label{
+    font-weight:900;font-size:14px;color:var(--wolf);
+    text-transform:uppercase;letter-spacing:1.5px;
+    margin:30px 4px 14px;
+  }
+
+  /* ===== Country grid ===== */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(min-width:560px){.grid{grid-template-columns:repeat(3,1fr);}}
+  @media(min-width:780px){.grid{grid-template-columns:repeat(4,1fr);}}
+
+  .country-card{
+    background:var(--snow);
+    border:2px solid var(--swan);
+    border-bottom-width:5px;
+    border-radius:var(--radius);
+    padding:18px 14px 16px;
+    text-align:center;
+    transition:transform .08s ease, border-color .12s ease;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    min-height:150px;justify-content:center;
+  }
+  .country-card:hover{border-color:var(--feather);}
+  .country-card:active{transform:translateY(2px);border-bottom-width:3px;}
+  .country-flag{font-size:46px;line-height:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.08));}
+  .country-name{font-weight:900;font-size:17px;color:var(--eel);}
+  .country-en{font-weight:700;font-size:12px;color:var(--hare);margin-top:-4px;}
+  .safety-badge{
+    display:inline-flex;align-items:center;gap:4px;
+    font-weight:900;font-size:11px;padding:4px 10px;border-radius:999px;margin-top:4px;
+  }
+  .sf-1{background:#E8F8DC;color:#4a9e00;}
+  .sf-2{background:#FFF4D1;color:#b58600;}
+  .sf-3{background:#FFE7CC;color:#c96a00;}
+  .sf-4{background:#FFE0E0;color:#d63333;}
+
+  /* ===== Country page header ===== */
+  .country-hero{
+    border-radius:var(--radius-lg);
+    padding:26px 22px 24px;
+    margin-top:18px;
+    color:var(--snow);
+    position:relative;overflow:hidden;
+    box-shadow:0 6px 0 rgba(0,0,0,.18);
+  }
+  .country-hero::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.12);top:-60px;right:-40px;}
+  .ch-flag{font-size:54px;line-height:1;position:relative;filter:drop-shadow(0 3px 0 rgba(0,0,0,.15));}
+  .ch-title{font-size:28px;font-weight:900;margin-top:6px;position:relative;}
+  .ch-en{font-size:14px;font-weight:700;opacity:.9;position:relative;}
+  .ch-tag{font-size:14px;font-weight:700;margin-top:10px;position:relative;opacity:.97;line-height:1.55;}
+
+  /* ===== Summary tiles ===== */
+  .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px;}
+  @media(min-width:560px){.tiles{grid-template-columns:repeat(4,1fr);}}
+  .tile{
+    background:var(--snow);border:2px solid var(--swan);border-bottom-width:4px;
+    border-radius:var(--radius);padding:14px 12px;text-align:center;
+  }
+  .tile .ico{font-size:24px;line-height:1;}
+  .tile .lbl{font-size:11px;font-weight:800;color:var(--hare);margin-top:6px;letter-spacing:.5px;}
+  .tile .val{font-size:15px;font-weight:900;color:var(--eel);margin-top:2px;line-height:1.3;}
+  .tile.sf-tile .val{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:13px;margin-top:4px;}
+
+  /* ===== Category chips (horizontal scroll) ===== */
+  .chips{
+    display:flex;gap:10px;overflow-x:auto;padding:18px 4px 6px;margin:0 -16px;padding-left:16px;padding-right:16px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    position:sticky;top:calc(env(safe-area-inset-top,0px) + 64px);background:var(--snow);z-index:30;
+  }
+  .chips::-webkit-scrollbar{display:none;}
+  .chip{
+    flex:0 0 auto;
+    background:var(--snow);
+    border:2px solid var(--swan);
+    border-bottom-width:4px;
+    color:var(--wolf);
+    font-weight:900;font-size:14px;
+    padding:10px 16px;border-radius:14px;
+    min-height:44px;display:inline-flex;align-items:center;gap:7px;
+    transition:transform .06s ease;white-space:nowrap;
+  }
+  .chip:active{transform:translateY(2px);border-bottom-width:2px;}
+  .chip.active{
+    background:var(--feather);border-color:var(--feather-dark);color:var(--snow);
+  }
+
+  /* ===== Sections ===== */
+  .panel{display:none;animation:fade .25s ease;}
+  .panel.show{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  .card{
+    background:var(--snow);border:2px solid var(--swan);border-radius:var(--radius);
+    padding:16px 18px;margin-top:14px;
+  }
+  .card-head{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+  .card-head .ico{font-size:24px;line-height:1;}
+  .card-head h3{font-size:17px;font-weight:900;color:var(--eel);}
+
+  /* basics */
+  .basic-row{padding:14px 0;border-bottom:2px solid var(--polar);}
+  .basic-row:last-child{border-bottom:none;}
+  .basic-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+  .basic-label{font-size:13px;font-weight:800;color:var(--wolf);flex:0 0 auto;}
+  .basic-value{font-size:16px;font-weight:900;color:var(--eel);text-align:right;}
+  .basic-note{font-size:13px;font-weight:600;color:var(--wolf);margin-top:6px;line-height:1.6;}
+
+  /* safety list */
+  .safe-list{list-style:none;margin-top:8px;}
+  .safe-list li{
+    position:relative;padding:10px 12px 10px 40px;font-size:14px;font-weight:700;
+    background:var(--polar);border-radius:12px;margin-top:8px;color:var(--eel);line-height:1.55;
+  }
+  .safe-list li::before{content:"✓";position:absolute;left:12px;top:10px;color:var(--feather);font-weight:900;font-size:16px;}
+
+  /* phrases */
+  .phrase-card{
+    background:var(--snow);border:2px solid var(--swan);border-bottom-width:4px;
+    border-radius:var(--radius);padding:14px 16px;margin-top:10px;
+    transition:transform .06s ease, border-color .12s ease;
+    cursor:pointer;position:relative;
+  }
+  .phrase-card:active{transform:translateY(2px);border-bottom-width:2px;border-color:var(--macaw);}
+  .phrase-ja{font-size:12px;font-weight:800;color:var(--hare);}
+  .phrase-local{font-size:22px;font-weight:900;color:var(--eel);margin:3px 0;line-height:1.35;word-break:break-word;}
+  .phrase-roman{font-size:13px;font-weight:700;color:var(--macaw);}
+  .phrase-copy{position:absolute;top:12px;right:12px;font-size:18px;opacity:.5;}
+
+  /* emergency */
+  .em-card{
+    background:#FFF5F5;border:2px solid #FFD4D4;border-bottom-width:4px;
+    border-radius:var(--radius);padding:14px 16px;margin-top:10px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .em-ico{font-size:26px;line-height:1;flex:0 0 auto;}
+  .em-body{flex:1;min-width:0;}
+  .em-label{font-size:13px;font-weight:800;color:var(--wolf);}
+  .em-note{font-size:12px;font-weight:600;color:var(--wolf);margin-top:3px;line-height:1.5;}
+  .em-call{
+    flex:0 0 auto;background:var(--cardinal);color:var(--snow);font-weight:900;font-size:15px;
+    padding:11px 16px;border-radius:14px;box-shadow:0 4px 0 var(--cardinal-dark);
+    min-height:44px;display:inline-flex;align-items:center;gap:6px;transition:transform .06s ease;
+  }
+  .em-call:active{transform:translateY(4px);box-shadow:0 0 0 var(--cardinal-dark);}
+  .em-call.no-tel{background:var(--polar);color:var(--eel);box-shadow:0 4px 0 var(--swan);}
+
+  /* apps */
+  .app-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:2px solid var(--polar);}
+  .app-row:last-child{border-bottom:none;}
+  .app-icon{
+    width:46px;height:46px;border-radius:14px;background:var(--macaw);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;flex:0 0 auto;
+    box-shadow:0 3px 0 #1690cf;
+  }
+  .app-body{flex:1;min-width:0;}
+  .app-name{font-size:16px;font-weight:900;color:var(--eel);}
+  .app-cat{display:inline-block;font-size:11px;font-weight:800;color:var(--beetle);background:#F6EBFF;padding:2px 8px;border-radius:999px;margin-left:6px;}
+  .app-desc{font-size:13px;font-weight:600;color:var(--wolf);margin-top:3px;line-height:1.5;}
+
+  /* note CTA */
+  .cta{
+    margin-top:30px;background:linear-gradient(135deg,#FFF9E6,#FFF3CC);
+    border:2px solid #FFE49A;border-radius:var(--radius-lg);padding:24px 22px;text-align:center;
+  }
+  .cta .ico{font-size:40px;line-height:1;}
+  .cta h3{font-size:19px;font-weight:900;color:var(--eel);margin-top:6px;}
+  .cta p{font-size:14px;font-weight:700;color:var(--wolf);margin-top:6px;line-height:1.6;}
+  .btn-pop{
+    display:inline-block;margin-top:16px;
+    background:var(--feather);color:var(--snow);
+    font-weight:900;font-size:16px;letter-spacing:.5px;
+    padding:15px 30px;border-radius:16px;
+    box-shadow:0 5px 0 var(--feather-dark);
+    transition:transform .06s ease, box-shadow .06s ease;min-height:44px;
+  }
+  .btn-pop:active{transform:translateY(5px);box-shadow:0 0 0 var(--feather-dark);}
+  .btn-pop.disabled{background:var(--swan);color:var(--hare);box-shadow:0 5px 0 #cfcfcf;pointer-events:none;}
+
+  /* footer */
+  .foot{text-align:center;color:var(--hare);font-size:12px;font-weight:700;margin-top:36px;}
+
+  /* toast */
+  .toast{
+    position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);
+    background:var(--eel);color:var(--snow);font-weight:900;font-size:15px;
+    padding:14px 24px;border-radius:16px;box-shadow:0 6px 0 rgba(0,0,0,.2);
+    opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;z-index:100;
+    display:flex;align-items:center;gap:8px;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  .view{display:none;}
+  .view.active{display:block;}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <button class="back-btn" id="backBtn"><span class="arrow">‹</span>もどる</button>
+      <a href="#/" class="logo" id="logoLink"><span class="owl">🦉</span>たびまえ</a>
+      <span class="topbar-spacer"></span>
+      <span class="streak">🔥 旅</span>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div class="view" id="viewHome">
+    <div class="wrap">
+      <div class="hero">
+        <span class="hero-owl">🦉</span>
+        <h1>旅の前に、サクッと予習！</h1>
+        <p>通貨・治安・あいさつ・緊急時。<br>行く国を選んでチェックしよう。</p>
+        <span class="hero-chip">▼ 国を選ぶ</span>
+      </div>
+      <div class="section-label">行き先をえらぶ</div>
+      <div class="grid" id="countryGrid"></div>
+      <div class="foot">© たびまえ — 旅前チェックリスト</div>
+    </div>
+  </div>
+
+  <!-- COUNTRY -->
+  <div class="view" id="viewCountry">
+    <div class="wrap" id="countryWrap"></div>
+  </div>
+
+  <div class="toast" id="toast"><span>📋</span><span id="toastMsg">コピーしました！</span></div>
+
+  <!-- data -->
+  <script src="../data/thailand.js"></script>
+  <script src="../data/korea.js"></script>
+  <script src="../data/taiwan.js"></script>
+  <script src="../data/usa.js"></script>
+
+  <script>
+  (function(){
+    "use strict";
+    var ORDER = ["thailand","korea","taiwan","usa"];
+    var DATA = window.TABIMAE || {};
+
+    var SAFETY = {
+      1:{label:"比較的安全",cls:"sf-1",dot:"🟢"},
+      2:{label:"注意",cls:"sf-2",dot:"🟡"},
+      3:{label:"要注意",cls:"sf-3",dot:"🟠"},
+      4:{label:"危険",cls:"sf-4",dot:"🔴"}
+    };
+
+    function esc(s){
+      if(s===undefined||s===null) return "";
+      return String(s)
+        .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+    }
+
+    var SECTIONS = [
+      {key:"basics",   label:"基本情報", icon:"🧭"},
+      {key:"safety",   label:"注意点",   icon:"⚠️"},
+      {key:"phrases",  label:"会話",     icon:"💬"},
+      {key:"emergency",label:"緊急時",   icon:"🆘"},
+      {key:"apps",     label:"アプリ",   icon:"📱"}
+    ];
+
+    /* ---------- HOME ---------- */
+    function renderHome(){
+      var grid = document.getElementById("countryGrid");
+      var html = "";
+      ORDER.forEach(function(id){
+        var c = DATA[id];
+        if(!c) return;
+        var sf = SAFETY[(c.summary&&c.summary.safety)||2] || SAFETY[2];
+        html += '<a class="country-card" href="#/'+esc(id)+'">'
+          + '<span class="country-flag">'+esc(c.flag)+'</span>'
+          + '<span class="country-name">'+esc(c.name)+'</span>'
+          + '<span class="country-en">'+esc(c.nameEn)+'</span>'
+          + '<span class="safety-badge '+sf.cls+'">'+sf.dot+' '+esc(sf.label)+'</span>'
+          + '</a>';
+      });
+      grid.innerHTML = html;
+    }
+
+    /* ---------- COUNTRY ---------- */
+    function renderCountry(id){
+      var c = DATA[id];
+      var wrap = document.getElementById("countryWrap");
+      if(!c){
+        wrap.innerHTML = '<div class="card" style="margin-top:24px;text-align:center;">'
+          +'<div class="card-head" style="justify-content:center;"><span class="ico">😵</span><h3>国が見つかりません</h3></div>'
+          +'<a class="btn-pop" href="#/" style="margin-top:14px;">ホームへもどる</a></div>';
+        return;
+      }
+      var g = (c.gradient&&c.gradient.length===2) ? c.gradient : ["#58CC02","#46a302"];
+      var s = c.summary || {};
+      var sf = SAFETY[s.safety||2] || SAFETY[2];
+
+      var html = "";
+      // header
+      html += '<div class="country-hero" style="background:linear-gradient(160deg,'+esc(g[0])+' 0%,'+esc(g[1])+' 100%);">'
+        + '<span class="ch-flag">'+esc(c.flag)+'</span>'
+        + '<div class="ch-title">'+esc(c.name)+'</div>'
+        + '<div class="ch-en">'+esc(c.nameEn)+' · '+esc(c.lang)+'</div>'
+        + '<div class="ch-tag">'+esc(c.tagline)+'</div>'
+        + '</div>';
+
+      // tiles
+      html += '<div class="tiles">'
+        + tile("💰","通貨", esc(s.currency||"—"))
+        + tile("🕐","時差", esc(s.timezone||"—"))
+        + '<div class="tile sf-tile"><div class="ico">🛡️</div><div class="lbl">治安</div>'
+            +'<div class="val '+sf.cls+'">'+sf.dot+' '+esc(sf.label)+'</div></div>'
+        + tile("🌤️","ベスト", esc(s.season||"—"))
+        + '</div>';
+
+      // chips
+      html += '<div class="chips" id="chips">';
+      SECTIONS.forEach(function(sec,i){
+        html += '<button class="chip'+(i===0?' active':'')+'" data-sec="'+sec.key+'">'
+          + '<span>'+sec.icon+'</span>'+esc(sec.label)+'</button>';
+      });
+      html += '</div>';
+
+      // panels
+      html += panelBasics(c);
+      html += panelSafety(c);
+      html += panelPhrases(c);
+      html += panelEmergency(c);
+      html += panelApps(c);
+
+      // note CTA
+      html += renderCTA(c);
+
+      html += '<div class="foot">行ってらっしゃい！よい旅を 🦉</div>';
+
+      wrap.innerHTML = html;
+      bindCountry();
+    }
+
+    function tile(ico,lbl,val){
+      return '<div class="tile"><div class="ico">'+ico+'</div><div class="lbl">'+lbl+'</div><div class="val">'+val+'</div></div>';
+    }
+
+    function panelBasics(c){
+      var rows = (c.basics||[]).map(function(b){
+        var note = b.note ? '<div class="basic-note">'+esc(b.note)+'</div>' : '';
+        return '<div class="basic-row"><div class="basic-top">'
+          +'<span class="basic-label">'+esc(b.label)+'</span>'
+          +'<span class="basic-value">'+esc(b.value)+'</span></div>'+note+'</div>';
+      }).join("");
+      return '<div class="panel show" data-panel="basics">'
+        +'<div class="card"><div class="card-head"><span class="ico">🧭</span><h3>基本情報</h3></div>'
+        + rows +'</div></div>';
+    }
+
+    function panelSafety(c){
+      var cards = (c.safety||[]).map(function(grp){
+        var items = (grp.items||[]).map(function(it){return '<li>'+esc(it)+'</li>';}).join("");
+        return '<div class="card"><div class="card-head"><span class="ico">'+esc(grp.icon||"⚠️")+'</span>'
+          +'<h3>'+esc(grp.category)+'</h3></div><ul class="safe-list">'+items+'</ul></div>';
+      }).join("");
+      return '<div class="panel" data-panel="safety">'+cards+'</div>';
+    }
+
+    function panelPhrases(c){
+      var blocks = (c.phrases||[]).map(function(grp){
+        var items = (grp.items||[]).map(function(p){
+          var payload = esc(p.local);
+          return '<div class="phrase-card" data-copy="'+payload+'" role="button" tabindex="0">'
+            +'<div class="phrase-ja">'+esc(p.ja)+'</div>'
+            +'<div class="phrase-local">'+esc(p.local)+'</div>'
+            +'<div class="phrase-roman">🔊 '+esc(p.roman)+'</div>'
+            +'<span class="phrase-copy">📋</span></div>';
+        }).join("");
+        return '<div class="card"><div class="card-head"><span class="ico">'+esc(grp.icon||"💬")+'</span>'
+          +'<h3>'+esc(grp.scene)+'</h3></div>'+items+'</div>';
+      }).join("");
+      return '<div class="panel" data-panel="phrases">'
+        +'<p style="font-size:13px;font-weight:700;color:var(--wolf);margin:14px 4px 0;">💡 カードをタップでコピーできます</p>'
+        + blocks +'</div>';
+    }
+
+    function panelEmergency(c){
+      var rows = (c.emergency||[]).map(function(e){
+        var note = e.note ? '<div class="em-note">'+esc(e.note)+'</div>' : '';
+        var raw = String(e.value||"");
+        var isPhone = /^[+\d][\d\s\-]{2,}$/.test(raw);
+        var tel = raw.replace(/[^\d+]/g,"");
+        var callBtn;
+        if(isPhone){
+          callBtn = '<a class="em-call" href="tel:'+esc(tel)+'">📞 '+esc(raw)+'</a>';
+        }else{
+          callBtn = '<span class="em-call no-tel">'+esc(raw)+'</span>';
+        }
+        return '<div class="em-card"><span class="em-ico">🆘</span>'
+          +'<div class="em-body"><div class="em-label">'+esc(e.label)+'</div>'+note+'</div>'
+          + callBtn +'</div>';
+      }).join("");
+      return '<div class="panel" data-panel="emergency">'
+        +'<div class="card" style="border-color:#FFD4D4;background:#FFF8F8;">'
+        +'<div class="card-head"><span class="ico">🆘</span><h3>緊急時の連絡先</h3></div>'
+        +'<p style="font-size:13px;font-weight:700;color:var(--cardinal);">困ったらここに連絡。番号はタップで発信できます。</p>'
+        +'</div>'+ rows +'</div>';
+    }
+
+    function panelApps(c){
+      var rows = (c.apps||[]).map(function(a){
+        var initial = esc(String(a.name||"?").trim().charAt(0).toUpperCase());
+        return '<div class="app-row"><div class="app-icon">'+initial+'</div>'
+          +'<div class="app-body"><div class="app-name">'+esc(a.name)
+          +'<span class="app-cat">'+esc(a.category)+'</span></div>'
+          +'<div class="app-desc">'+esc(a.desc)+'</div></div></div>';
+      }).join("");
+      return '<div class="panel" data-panel="apps">'
+        +'<div class="card"><div class="card-head"><span class="ico">📱</span><h3>入れておくと便利なアプリ</h3></div>'
+        + rows +'</div></div>';
+    }
+
+    function renderCTA(c){
+      if(c.noteUrl && c.noteUrl.trim()){
+        return '<div class="cta"><div class="ico">📖</div>'
+          +'<h3>'+esc(c.name)+'の完全ガイド</h3>'
+          +'<p>もっと詳しい現地情報・裏ワザは<br>noteの完全版でチェック！</p>'
+          +'<a class="btn-pop" href="'+esc(c.noteUrl)+'" target="_blank" rel="noopener">完全版を読む →</a></div>';
+      }
+      return '<div class="cta"><div class="ico">📖</div>'
+        +'<h3>'+esc(c.name)+'の完全ガイド</h3>'
+        +'<p>もっと詳しい現地情報を準備中です。<br>お楽しみに！</p>'
+        +'<span class="btn-pop disabled">準備中…</span></div>';
+    }
+
+    /* ---------- interactions ---------- */
+    function bindCountry(){
+      var chips = document.querySelectorAll('#chips .chip');
+      var panels = document.querySelectorAll('#viewCountry .panel');
+      chips.forEach(function(chip){
+        chip.addEventListener('click', function(){
+          var sec = chip.getAttribute('data-sec');
+          chips.forEach(function(x){x.classList.remove('active');});
+          chip.classList.add('active');
+          panels.forEach(function(p){
+            p.classList.toggle('show', p.getAttribute('data-panel')===sec);
+          });
+          chip.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+          window.scrollTo({top:0,behavior:'smooth'});
+        });
+      });
+
+      document.querySelectorAll('#viewCountry .phrase-card').forEach(function(card){
+        function doCopy(){
+          var txt = card.getAttribute('data-copy')||"";
+          copyText(txt);
+        }
+        card.addEventListener('click', doCopy);
+        card.addEventListener('keydown', function(e){
+          if(e.key==='Enter'||e.key===' '){e.preventDefault();doCopy();}
+        });
+      });
+    }
+
+    function copyText(txt){
+      var done = function(){ showToast('コピーしました！'); };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done, function(){ legacyCopy(txt); done(); });
+      }else{ legacyCopy(txt); done(); }
+    }
+    function legacyCopy(txt){
+      try{
+        var ta=document.createElement('textarea');
+        ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+        document.body.appendChild(ta);ta.focus();ta.select();
+        document.execCommand('copy');document.body.removeChild(ta);
+      }catch(e){}
+    }
+
+    var toastTimer=null;
+    function showToast(msg){
+      var t=document.getElementById('toast');
+      document.getElementById('toastMsg').textContent=msg;
+      t.classList.add('show');
+      if(toastTimer) clearTimeout(toastTimer);
+      toastTimer=setTimeout(function(){t.classList.remove('show');},1600);
+    }
+
+    /* ---------- routing ---------- */
+    function route(){
+      var hash = location.hash.replace(/^#\/?/,'');
+      var home = document.getElementById('viewHome');
+      var country = document.getElementById('viewCountry');
+      if(hash && DATA[hash]){
+        document.body.classList.add('is-country');
+        home.classList.remove('active');
+        country.classList.add('active');
+        renderCountry(hash);
+        window.scrollTo(0,0);
+      }else{
+        document.body.classList.remove('is-country');
+        country.classList.remove('active');
+        home.classList.add('active');
+        if(hash && hash!=="" ){ /* unknown -> go home */ location.replace('#/'); }
+        window.scrollTo(0,0);
+      }
+    }
+
+    document.getElementById('backBtn').addEventListener('click', function(){
+      location.hash = '#/';
+    });
+
+    window.addEventListener('hashchange', route);
+
+    renderHome();
+    route();
+  })();
+  </script>
+</body>
+</html>
+<!-- TOKENS: Duolingo — Feather Green #58CC02 (primary) / Feather Dark #58A700 (button bottom shadow) / Mask Green #89E219 / Golden Yellow #FFC200 / Cardinal #FF4B4B (danger) / Eel #4B4B4B (text) / Snow #FFFFFF / Swan #E5E5E5 (border) / Polar #F7F7F7 (light bg) / Macaw #1CB0F6 (blue accent) / Beetle #CE82FF (purple). Font: Zen Maru Gothic (JP rounded) + Nunito (Latin rounded) as Feather Bold web substitute, weight 700-900. Radius 16px (lg 24px). Buttons: bottom dark shadow box-shadow:0 4-5px 0 (darker shade), press = translateY + shadow collapse (3D pop). Cards: 2px border + thicker 4-5px bottom border. Chips: horizontal scroll, active = feather green fill + white text. Generous padding, flat emoji icons, bright playful tone. Sources: design.duolingo.com/identity/color, brandpalettes.com/duolingo-colors -->
